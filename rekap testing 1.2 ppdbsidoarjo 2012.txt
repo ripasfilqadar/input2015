@@ -1,0 +1,106 @@
+select nama_sekolah, count(*)
+from (
+	select distinct left(id_sekolah, 2) COLLATE utf8_general_ci as id_sekolah, nama_sekolah from sekolah
+) s join pendaftar_smp p on s.id_sekolah = p.id_sekolah
+group by p.id_sekolah;
+
++---------------------------+----------+
+| nama_sekolah              | count(*) |
++---------------------------+----------+
+| SMP Negeri 1 Sidoarjo     |        1 |
+| SMP Negeri 1 Porong       |        8 |
+| SMP Negeri 2 Porong       |        8 |
+| SMP Negeri 3 Porong       |        6 |
+| SMP Negeri 1 Krembung     |       10 |
+| SMP Negeri 2 Krembung     |       10 |
+| SMP Negeri 1 Tulangan     |       10 |
+| SMP Negeri 1 Tanggulangin |        3 |
+| SMP Negeri 2 Tanggulangin |        4 |
+| SMP Negeri 1 Jabon        |        4 |
+| SMP Negeri 1 Krian        |        8 |
+| SMP Negeri 2 Krian        |       10 |
+| SMP Negeri 3 Krian        |        8 |
+| SMP Negeri 1 Balongbendo  |        6 |
+| SMP Negeri 2 Balongbendo  |        2 |
+| SMP Negeri 1 Tarik        |        1 |
+| SMP Negeri 2 Tarik        |       18 |
+| SMP Negeri 1 Prambon      |       14 |
+| SMP Negeri 1 Wonoayu      |        2 |
+| SMP Negeri 2 Wonoayu      |       10 |
+| SMP Negeri 1 Taman        |       28 |
+| SMP Negeri 2 Taman        |       11 |
+| SMP Negeri 3 Taman        |       10 |
+| SMP Negeri 2 Gedangan     |       23 |
+| SMP Negeri 2 Waru         |       20 |
+| SMP Negeri 3 Waru         |       10 |
+| SMP Negeri 4 Waru         |        5 |
+| SMP Negeri 2 Sedati       |       10 |
+| SMP Negeri 5 Sidoarjo     |       10 |
+| SMP Negeri 6 Sidoarjo     |       10 |
+| SMP Negeri 1 Candi        |       22 |
++---------------------------+----------+
+  Total                            302
+
+select nama_sekolah, count(*)
+from (
+	select distinct left(id_sekolah, 2) COLLATE utf8_general_ci as id_sekolah, nama_sekolah from sekolah
+) s join pendaftar_sma p on s.id_sekolah = p.id_sekolah
+group by p.id_sekolah;
+
++-----------------------+----------+
+| nama_sekolah          | count(*) |
++-----------------------+----------+
+| SMA Negeri 2 Sidoarjo |       10 |
+| SMA Negeri 3 Sidoarjo |       10 |
+| SMA Negeri 4 Sidoarjo |        9 |
+| SMA Negeri 1 Porong   |        4 |
+| SMA Negeri 1 Taman    |       12 |
+| SMA Negeri 1 Waru     |        8 |
+| SMA Negeri 1 Wonoayu  |       10 |
++-----------------------+----------+
+  Total                         63
+
+select nama_sekolah, count(*)
+from (
+	select distinct left(id_sekolah, 2) COLLATE utf8_general_ci as id_sekolah, nama_sekolah from sekolah
+) s join pendaftar_smk p on s.id_sekolah = p.id_sekolah
+group by p.id_sekolah;
+
++-----------------------+----------+
+| nama_sekolah          | count(*) |
++-----------------------+----------+
+| SMK Negeri 1 Sidoarjo |       15 |
+| SMK Negeri 3 Buduran  |       24 |
+| SMK Negeri 1 Jabon    |        2 |
++-----------------------+----------+
+  Total                         41
+
+======================================
+query jumlah:
+
+select sum(jml)
+from (
+select nama_sekolah, count(*) as jml
+from (
+select distinct left(id_sekolah, 2) COLLATE utf8_general_ci as id_sekolah, nama_sekolah from sekolah
+) s join pendaftar_smp p on s.id_sekolah = p.id_sekolah
+group by p.id_sekolah
+) a;
+
+select sum(jml)
+from (
+select nama_sekolah, count(*) as jml
+from (
+select distinct left(id_sekolah, 2) COLLATE utf8_general_ci as id_sekolah, nama_sekolah from sekolah
+) s join pendaftar_sma p on s.id_sekolah = p.id_sekolah
+group by p.id_sekolah
+) a;
+
+select sum(jml)
+from (
+select nama_sekolah, count(*) as jml
+from (
+select distinct left(id_sekolah, 2) COLLATE utf8_general_ci as id_sekolah, nama_sekolah from sekolah
+) s join pendaftar_smk p on s.id_sekolah = p.id_sekolah
+group by p.id_sekolah
+) a;
