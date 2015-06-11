@@ -1,0 +1,26 @@
+body{
+    font-family:Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
+    color:#000;
+}
+
+@page { 
+    margin: 0.2in 0.2in 0.2in 0.2in;
+} 
+
+#title{
+    margin: 0 auto;
+    line-height: 8pt;
+}
+
+#kolomutama{
+    width: 5in;
+    border-style: solid;
+    border-width: 1pt;
+}
+
+#separator{
+    width: 1px;
+    height: 500px;
+    border-style: dashed;
+}

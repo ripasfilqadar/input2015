@@ -1,0 +1,141 @@
+<?php $this->load->view('base/header', array('namePage' => "Daftar Siswa Baru"));?>
+
+<script type="text/javascript">
+
+    function toggle(source) 
+    {
+        var aa= document.getElementById('form1');
+//        checkboxes = document.getElementsByName('checkbox[]');
+        if(document.getElementById('checkAll').checked)
+        {
+            for (var i = 0, length_ = aa.elements.length; i < length_; i++) {
+               if (aa.elements[i].type === 'checkbox') {
+                  aa.elements[i].checked = true;
+               }
+            }
+//        alert("checked "+aa.elements.length);
+//            for(var i=0, i<aa.elements.length;i++) 
+//            {
+//              checkboxes[i].checked = source.checked;
+//            }
+        }
+        else
+        {
+            for (var i = 0, length_ = aa.elements.length; i < length_; i++) {
+               if (aa.elements[i].type === 'checkbox') {
+                  aa.elements[i].checked = false;
+               }
+            }
+//            for(var i=0, n=checkboxes.length;i<n;i++) 
+//            for(var i=0, i<aa.elements.length;i++) 
+//            {
+//              checkboxes[i].checked = source.unchecked;
+//            }
+        }
+    }
+    
+</script>
+
+<div id="sidebar">
+    <?php $this->load->view('base/sidebar_menu');?> 
+    <div id="nav">
+        <div class="boxnav">
+            <h3 class="titlenav">Prosedur</h3>
+            Upload file kemudian lakukan update nilai.
+            <br/>
+            <br/>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<!-- CONTENT -->
+<div style="float:left;">
+    <table width="500" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td><h2>Update Nilai</h2></td>
+        </tr>
+        <tr>
+            <td>
+                <table class="tabeldalambesar" cellpadding="0" cellspacing="0" width="580px;">
+                    <tr>
+                        <td align="center">
+                            <h3>DAFTAR NILAI TEST</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <!--<div style="margin:10px 0 0 15px;">
+                            Halaman: <?//php echo (($pages = $this->pagination->create_links())) ? $pages : '<strong>1</strong>'; ?>
+                            </div>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <form action="<?php echo site_url('upload/doUpdate') ?>" method="post" name="form1" id="form1">
+                                <table class="tabeldalamform" cellpadding="1" cellspacing="2" style="margin-bottom: 5px">
+                                        
+                                        <tr>
+                                            <td align="justify" width="100%" valign="top">
+                                                <div id="detail_canvas" style="display: none; position:absolute; overflow:auto; height: 400px; width: 500px; border: solid thin grey; backgroundcolor:white;">
+                                                                                  Verifikasi goes here
+                                                </div>
+                                                <div style="text-align:center;overflow:auto;height: 430px">
+                                                    
+                                                    <table width="100%" id="TablePeserta">
+                                                        <thead>
+                                                                <th>NO UJIAN</th>
+                                                                <th>NTMB</th>
+                                                                <th>NTK</th>
+                                                                <th><input type="checkbox" id="checkAll" name="checkAll" onClick="toggle(this)"/> All</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php 
+                                                            foreach($csvData as $field)
+                                                            //for($i = $num; $i < $num2; $i++)
+                                                            { ?>
+                                                                <tr class="trkecil<?php echo $i%2; ?>">
+                                                                    <td><?php echo anchor('cari/detail/'.$tingkatan.'/'.$field['id'], $field['id'], 'style="color: blue;"'); ?></td>
+                                                                    <!--<td><?php echo $field['id'];  ?></td>-->
+                                                                   <td><?php echo $field['nilai1']; ?></td>
+                                                                    <td><?php echo $field['nilai2']; ?></td>
+                                                                    <td>
+                                                                        <input type="checkbox" name="checkbox[]" id="checkbox[]" value="<?php echo $field['id'] ?>" style="margin:0px" />
+                                                                    </td>
+                                                                </tr>
+                                                            <?php   } ?>
+                                                                <tr align="center">
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                        </tbody>
+                                                    </table>
+                                                    <tr align="center">
+                                                                    <td colspan="3" width="100%">
+                                                                        <input type="submit" value="update nilai" onclick="return confirm('Update nilai?');" style="border: solid thin #123412"/>
+                                                                    </td>
+                                                                </tr>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                            </form>
+                            <span style="color:#666; font-size: 12px">*klik tombol <strong>update</strong> untuk memperbaharui nilai.</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="clear: both"></div>
+<?php $this->load->view('base/footer')?>
+
+
+</body>
+</html>
+
+
