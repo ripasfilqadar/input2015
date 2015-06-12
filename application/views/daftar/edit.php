@@ -295,6 +295,23 @@
                                 <input type="hidden" name="nilai_bind1" value="<?php echo $pendaftar->UAN_BIND; ?>" />
                                 <input type="hidden" name="nilai_mat1" value="<?php echo $pendaftar->UAN_MAT; ?>" />
                                 <input type="hidden" name="nilai_ipa1" value="<?php echo $pendaftar->UAN_IPA; ?>" />
+
+                                <input type="hidden" name="nun_asli" value="<?php echo $pendaftar->NUN_ASLI; ?>" />
+
+                                <?php if ($tingkatan == 'smp') { ?> 
+                                <input type="hidden" id="nilai_bind2_hidden" name="nilai_bind2" value="<?php echo $pendaftar->RAP_BIND; ?>" />
+                                <input type="hidden" id="nilai_mat2_hidden" name="nilai_mat2" value="<?php echo $pendaftar->RAP_MAT; ?>" />
+                                <input type="hidden" id ="nilai_ipa2_hidden" name="nilai_ipa2" value="<?php echo $pendaftar->RAP_IPA; ?>" />
+
+                                <input type="hidden" name="nrap_asli" value="<?php echo $pendaftar->NRAP_ASLI; ?>" />
+
+                                <input type="hidden" name="nilai_bind3" value="<?php echo $pendaftar->AKHIR_BIND; ?>" />
+                                <input type="hidden" name="nilai_mat3" value="<?php echo $pendaftar->AKHIR_MAT; ?>" />
+                                <input type="hidden" name="nilai_ipa3" value="<?php echo $pendaftar->AKHIR_IPA; ?>" />
+
+                                <input type="hidden" name="nakhir_asli" value="<?php echo $pendaftar->NAKHIR_ASLI; ?>" />
+                                <?php } ?>
+
                                 <?php if ($tingkatan != 'smp') { ?> 
                                 <input type="hidden" name="nilai_bing1" value="<?php echo $pendaftar->UAN_BING; ?>" />
                                 <?php } ?>
@@ -503,13 +520,13 @@
                                                 <tbody align="center" style="background-color: #ffffff">
                                                     <tr>
                                                         <td>
-                                                            <input id="nilai_bind2" onchange="sum()" name="nilai_bind2" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->UAN_BIND; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
+                                                            <input id="nilai_bind2" onchange="sum()" name="nilai_bind2" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->RAP_BIND; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
                                                         </td>
                                                         <td>
-                                                            <input id="nilai_mat2" onchange="sum()" name="nilai_mat2" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->UAN_MAT; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
+                                                            <input id="nilai_mat2" onchange="sum()" name="nilai_mat2" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->RAP_MAT; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
                                                         </td>
-                                                        <td><input id="nilai_ipa2" onchange="sum()" name="nilai_ipa2" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->UAN_IPA; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> /></td>
-                                                        <?php if ($this->uri->segment(2) == 'baru') { ?><td><input id="nrap_asli" name="nrap_asli" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->NUN_ASLI; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="enabled"' : ''; ?> /></td><?php } ?> 
+                                                        <td><input id="nilai_ipa2" onchange="sum()" name="nilai_ipa2" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->RAP_IPA; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> /></td>
+                                                        <?php if ($this->uri->segment(2) == 'baru') { ?><td><input id="nrap_asli" name="nrap_asli" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->NRAP_ASLI; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="enabled"' : ''; ?> /></td><?php } ?> 
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -518,7 +535,7 @@
                                     </tr>
                                     <tr style="visibility:hidden" id="perubahan">
                                         <td id="alasanlabel" class="tddfkiri" valign="top"><label>Alasan Perubahan</label> </td>
-                                        <td><input name="alasan" id="alasan" style="height:40px; width:340px" required></td>
+                                        <td><input name="alasan" id="alasan" style="height:40px; width:340px" ></td>
                                         <td><button type="submit" onclick="saveus()" id="tombolubah" style="visibility:hidden;">Simpan Nilai</button></td>
                                     </tr>
                                     <tr>
@@ -539,14 +556,14 @@
                                                 <tbody align="center" style="background-color: #ffffff">
                                                     <tr>
                                                         <td>
-                                                            <input  id="nilai_bind3" name="nilai_bind3" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->UAN_BIND; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
+                                                            <input  id="nilai_bind3" name="nilai_bind3" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->AKHIR_BIND; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
                                                         </td>
                                                         <td>
-                                                            <input id="nilai_mat3" name="nilai_mat3" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->UAN_MAT; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
+                                                            <input id="nilai_mat3" name="nilai_mat3" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->AKHIR_MAT; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
                                                         </td>
-                                                        <td><input id="nilai_ipa3" name="nilai_ipa3" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->UAN_IPA; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> /></td>
+                                                        <td><input id="nilai_ipa3" name="nilai_ipa3" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->AKHIR_IPA; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> /></td>
                                                 
-                                                        <?php if ($this->uri->segment(2) == 'baru') { ?><td><input id="nakhir_asli" name="nakhir_asli" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->NUN_ASLI; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> /></td><?php } ?> 
+                                                        <?php if ($this->uri->segment(2) == 'baru') { ?><td><input id="nakhir_asli" name="nakhir_asli" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->NAKHIR_ASLI; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> /></td><?php } ?> 
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -775,6 +792,51 @@
                                     </td>
                                 </tr>
                                 
+                                <?php if ($terdaftar['tingkatan'] == 'smp') { ?> 
+                                <tr>
+                                    <td class="tddfkiri" valign="top"><label><?php echo $_nilaiRAP ?></label> </td>
+                                    <td class="tddfkanan">
+                                        <table id="NILAI_UN" width="300" border="1" cellspacing="0" cellpadding="0">
+                                            <thead align="center">
+                                                <th>B. IND</th>
+                                                <th>MAT</th>
+                                                <th>IPA</th>
+                                                <th>NILAI AKHIR</th>
+                                            </thead>
+                                            <tbody align="center" style="background-color: #ffffff">
+                                                <tr>
+                                                    <td><?php echo $terdaftar['RAP_BIND']; ?></td>
+                                                    <td><?php echo $terdaftar['RAP_MAT']; ?></td>
+                                                    <td><?php echo $terdaftar['RAP_IPA']; ?></td>
+                                                    <td><?php echo $terdaftar['NRAP_ASLI']; ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tddfkiri" valign="top"><label><?php echo $_nilaiakhir ?></label> </td>
+                                    <td class="tddfkanan">
+                                        <table id="NILAI_UN" width="300" border="1" cellspacing="0" cellpadding="0">
+                                            <thead align="center">
+                                                <th>B. IND</th>
+                                                <th>MAT</th>
+                                                <th>IPA</th>
+                                                <th>NILAI AKHIR</th>
+                                            </thead>
+                                            <tbody align="center" style="background-color: #ffffff">
+                                                <tr>
+                                                    <td><?php echo $terdaftar['AKHIR_BIND']; ?></td>
+                                                    <td><?php echo $terdaftar['AKHIR_MAT']; ?></td>
+                                                    <td><?php echo $terdaftar['AKHIR_IPA']; ?></td>
+                                                    <td><?php echo $terdaftar['NAKHIR_ASLI']; ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <?php } ?> 
+
                                 <?php if (false) { ?> 
                                 <tr>
                                     <td class="tddfkiri" valign="top"><label><?php echo $_nilai2 ?></label> </td>
@@ -901,10 +963,11 @@ $("#pilih2").change(function(){ //change pilih2
 
             var x=window.confirm("Apakah data nilai yang anda masukkan sudah benar? Data yang anda rubah sangat berpengaruh pada penilaian, mohon ketelitiannya")
             if (x)
-                window.alert("Perubahan data berhasil dilakukan")
+                window.alert("Perubahan data berhasil nilakukan")
             else
                 window.alert("Perubahan batal dilakukan")
         }
+        else window.alert("Alasan belum diisi");
     }
 
     function sum() {
@@ -915,8 +978,12 @@ $("#pilih2").change(function(){ //change pilih2
         akhir = document.getElementById('nun_asli').value;
 
         bind2=document.getElementById('nilai_bind2').value;
+        document.getElementById('nilai_bind2_hidden').value=bind2;
         ipa2=document.getElementById('nilai_ipa2').value;
+        document.getElementById('nilai_ipa2_hidden').value=ipa2;
         mat2=document.getElementById('nilai_mat2').value;
+        document.getElementById('nilai_mat2_hidden').value=mat2;
+        
         document.getElementById('nrap_asli').value=parseFloat(bind2)+parseFloat(ipa2)+parseFloat(mat2);
 
         akhir2 = document.getElementById('nrap_asli').value

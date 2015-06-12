@@ -51,20 +51,56 @@
                         <td>:</td>
                         <td><?php echo $NO_TELP; ?></td>
                     </tr>
+                    <?php if ($tingkatan == 'smp') { ?> 
                     <tr>
-                        <td class="style2">Nilai Bahasa Indonesia</td>
-                        <td>:</td>
-                        <td><?php echo $UAN_BIND; ?></td>
+                        <td></td>
+                        <td></td>
+                        <td class="style2">Rapor</td>
+                        <td class="style2">US</td>
+                        <td class="style2">Akhir</td>
+                    </tr>
+                    <?php } ?> 
+                    <tr>
+                        <?php if ($tingkatan == 'smp') { ?> 
+                            <td class="style2">Nilai Bahasa Indonesia</td>
+                            <td>:</td>
+                            <td><?php echo $RAP_BIND; ?></td>
+                            <td><?php echo $UAN_BIND; ?></td>
+                            <td><?php echo $AKHIR_BIND; ?></td>
+                        <?php } ?> 
+                        <?php if ($tingkatan != 'smp') { ?>
+                            <td class="style2">Nilai Bahasa Indonesia</td>
+                            <td>:</td>
+                            <td><?php echo $UAN_BIND; ?></td>
+                        <?php } ?> 
                     </tr>
                     <tr>
-                        <td class="style2">Nilai Matematika</td>
-                        <td>:</td>
-                        <td><?php echo $UAN_MAT; ?></td>
+                        <?php if ($tingkatan == 'smp') { ?> 
+                            <td class="style2">Nilai Matematika</td>
+                            <td>:</td>
+                            <td><?php echo $RAP_MAT; ?></td>
+                            <td><?php echo $UAN_MAT; ?></td>
+                            <td><?php echo $AKHIR_MAT; ?></td>
+                        <?php } ?> 
+                        <?php if ($tingkatan != 'smp') { ?>
+                            <td class="style2">Nilai Matematika</td>
+                            <td>:</td>
+                            <td><?php echo $UAN_MAT; ?></td>
+                        <?php } ?> 
                     </tr>
                     <tr>
-                        <td class="style2">Nilai IPA</td>
-                        <td>:</td>
-                        <td><?php echo $UAN_IPA; ?></td>
+                        <?php if ($tingkatan == 'smp') { ?> 
+                            <td class="style2">Nilai IPA</td>
+                            <td>:</td>
+                            <td><?php echo $RAP_IPA; ?></td>
+                            <td><?php echo $UAN_IPA; ?></td>
+                            <td><?php echo $AKHIR_IPA; ?></td>
+                        <?php } ?> 
+                        <?php if ($tingkatan != 'smp') { ?>
+                            <td class="style2">Nilai IPA</td>
+                            <td>:</td>
+                            <td><?php echo $UAN_IPA; ?></td>
+                        <?php } ?> 
                     </tr>
                     <?php if ($tingkatan != 'smp') { ?> 
                     <tr>
@@ -73,6 +109,7 @@
                         <td><?php echo $UAN_BING; ?></td>
                     </tr>
                     <?php } ?> 
+
                     <?php if (false) { ?> 
                     <tr>
                         <td class="style2">NTMB</td>
@@ -88,7 +125,14 @@
                     <tr>
                         <td class="style2">Nilai Akhir</td>
                         <td>:</td>
-                        <td><?php echo $NUN_ASLI; ?></td>
+                        <?php if ($tingkatan == 'smp') { ?> 
+                            <td><?php echo $NUN_ASLI; ?></td>
+                            <td><?php echo $NRAP_ASLI; ?></td>
+                            <td><?php echo $NAKHIR_ASLI; ?></td>
+                        <?php } ?> 
+                        <?php if ($tingkatan != 'smp') { ?> 
+                            <td><?php echo $NUN_ASLI; ?></td>
+                        <?php } ?> 
                     </tr>
                     <?php if (false) { ?> 
                     <tr>

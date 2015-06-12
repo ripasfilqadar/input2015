@@ -50,14 +50,13 @@ class Pdf extends CI_Controller {
         //$data['coba'] = $datacetak;
         //$data['coba2'] = md5(base64_encode($datacetak));
         
-        
         $mypdf = new Cezpdf("A4", 'portrait'); 
         $this->template($mypdf, $data);
         $this->template($mypdf, $data, ($mypdf->y)/2 + 10, 'Untuk Sekolah');
-        $mypdf->addText(15, $mypdf->y/2 +15, 20, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+        $mypdf->addText(15, $mypdf->y/2 +15, 10, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - POTONG DISINI - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - ");
         $mypdf->output();
-        $mypdf->ezStream(); 
-        
+
+        $mypdf->ezStream();
     }
     
     public function template($pdf, $data, $posY = 0, $statement='Untuk Pendaftar'){
@@ -65,7 +64,7 @@ class Pdf extends CI_Controller {
             $judul2 = "DINAS PENDIDIKAN";
             date_default_timezone_set('Asia/Jakarta');
             $judul3 = "Jl. Pahlawan No. 4, Sidoarjo, Telp. 031-8921219, 031-8940921";
-            $pdf->addJpegFromFile("images/dinas2.png",35,$pdf->y-$posY-55);
+            $pdf->addJpegFromFile("images/logo-sidoarjo.jpg",30,$pdf->y-$posY-55);
             $pdf->addText(150, $pdf->y-$posY-9, 15, $judul1);
             $pdf->addText(215, $pdf->y-$posY-25, 16, $judul2);
             $pdf->addText(178, $pdf->y-$posY-35, 8, $judul3);
@@ -97,93 +96,111 @@ class Pdf extends CI_Controller {
 
             $y=90;
             $x=80;
-            $pdf->addText($x+100, $pdf->y-$posY-$y, 8, "NOMOR PENDAFTARAN"); 
-            $pdf->addText($x+100, $pdf->y-$posY-$y-8, 8, "NOMOR UN");
-            $pdf->addText($x+100, $pdf->y-$posY-$y-16, 8, "NAMA");
-            $pdf->addText($x+100, $pdf->y-$posY-$y-24, 8, "JENIS KELAMIN");
-            $pdf->addText($x+100, $pdf->y-$posY-$y-32, 8, "TEMPAT, TGL LAHIR");
-            $pdf->addText($x+100, $pdf->y-$posY-$y-40, 8, "ALAMAT");
-            $pdf->addText($x+100, $pdf->y-$posY-$y-48, 8, "KOTA/KAB (DOMISILI)");
-            $pdf->addText($x+100, $pdf->y-$posY-$y-56, 8, "NO. KK");
-            $pdf->addText($x+100, $pdf->y-$posY-$y-64, 8, "NO. TELEPON");
-            $pdf->addText($x+100, $pdf->y-$posY-$y-72, 8, "NAMA ORANG TUA");
-            $pdf->addText($x+100, $pdf->y-$posY-$y-80, 8, "ASAL SEKOLAH");
-            $pdf->addText($x+100, $pdf->y-$posY-$y-88, 8, "KOTA ASAL SEKOLAH");
+            $val=85;
+            $kiri=-20;
+            $val3=250;
+            $data3=350;
+
+            $pdf->addText($x+$kiri, $pdf->y-$posY-$y, 8, "NOMOR PENDAFTARAN"); 
+            $pdf->addText($x+$kiri, $pdf->y-$posY-$y-8, 8, "NOMOR UN");
+            $pdf->addText($x+$kiri, $pdf->y-$posY-$y-16, 8, "NAMA");
+            $pdf->addText($x+$kiri, $pdf->y-$posY-$y-24, 8, "JENIS KELAMIN");
+            $pdf->addText($x+$kiri, $pdf->y-$posY-$y-32, 8, "TEMPAT, TGL LAHIR");
+            $pdf->addText($x+$kiri, $pdf->y-$posY-$y-40, 8, "ALAMAT");
+            $pdf->addText($x+$kiri, $pdf->y-$posY-$y-48, 8, "KOTA/KAB (DOMISILI)");
+            $pdf->addText($x+$kiri, $pdf->y-$posY-$y-56, 8, "NO. KK");
+            $pdf->addText($x+$kiri, $pdf->y-$posY-$y-64, 8, "NO. TELEPON");
+            $pdf->addText($x+$kiri, $pdf->y-$posY-$y-72, 8, "NAMA ORANG TUA");
+            $pdf->addText($x+$kiri, $pdf->y-$posY-$y-80, 8, "ASAL SEKOLAH");
+            $pdf->addText($x+$kiri, $pdf->y-$posY-$y-88, 8, "KOTA ASAL SEKOLAH");
             //keterangan 
             // $pdf->addText($x, $pdf->y-$posY-$y-80, 8, "JALUR DAFTAR");
             
-            $pdf->addText($x+200, $pdf->y-$posY-$y, 8, ": ".$data['NO_PENDAFTARAN']); 
-            $pdf->addText($x+200, $pdf->y-$posY-$y-8, 8, ": ".$data['NO_UJIAN']);
-            $pdf->addText($x+200, $pdf->y-$posY-$y-16, 8, ": ".$data['NAMA']);
-            $pdf->addText($x+200, $pdf->y-$posY-$y-24, 8, ": ".($data['JENIS_KEL']=='L'?'LAKI-LAKI':'PEREMPUAN'));
-            $pdf->addText($x+200, $pdf->y-$posY-$y-32, 8, ": ".strtoupper($data['TMP_LAHIR']).", ".$data['TGL_LAHIR']);
-            $pdf->addText($x+200, $pdf->y-$posY-$y-40, 8, ": ".$data['ALAMAT']);
-            $pdf->addText($x+200, $pdf->y-$posY-$y-48, 8, ": ".$data['KOTA']);
-            $pdf->addText($x+200, $pdf->y-$posY-$y-56, 8, ": ".$data['DOMISILI']);
-            $pdf->addText($x+200, $pdf->y-$posY-$y-64, 8, ": ".$data['NO_TELP']);
-            $pdf->addText($x+200, $pdf->y-$posY-$y-72, 8, ": ".$data['NAMA_ORTU']);
-            $pdf->addText($x+200, $pdf->y-$posY-$y-80, 8, ": ".$data['ASAL_SEKOLAH']);
-            $pdf->addText($x+200, $pdf->y-$posY-$y-88, 8, ": ".$data['KOTA_ASAL_SEKOLAH']);
+            $pdf->addText($x+$val, $pdf->y-$posY-$y, 8, ": ".$data['NO_PENDAFTARAN']); 
+            $pdf->addText($x+$val, $pdf->y-$posY-$y-8, 8, ": ".$data['NO_UJIAN']);
+            $pdf->addText($x+$val, $pdf->y-$posY-$y-16, 8, ": ".$data['NAMA']);
+            $pdf->addText($x+$val, $pdf->y-$posY-$y-24, 8, ": ".($data['JENIS_KEL']=='L'?'LAKI-LAKI':'PEREMPUAN'));
+            $pdf->addText($x+$val, $pdf->y-$posY-$y-32, 8, ": ".strtoupper($data['TMP_LAHIR']).", ".$data['TGL_LAHIR']);
+            $pdf->addText($x+$val, $pdf->y-$posY-$y-40, 8, ": ".$data['ALAMAT']);
+            $pdf->addText($x+$val, $pdf->y-$posY-$y-48, 8, ": ".$data['KOTA']);
+            $pdf->addText($x+$val, $pdf->y-$posY-$y-56, 8, ": ".$data['DOMISILI']);
+            $pdf->addText($x+$val, $pdf->y-$posY-$y-64, 8, ": ".$data['NO_TELP']);
+            $pdf->addText($x+$val, $pdf->y-$posY-$y-72, 8, ": ".$data['NAMA_ORTU']);
+            $pdf->addText($x+$val, $pdf->y-$posY-$y-80, 8, ": ".$data['ASAL_SEKOLAH']);
+            $pdf->addText($x+$val, $pdf->y-$posY-$y-88, 8, ": ".$data['KOTA_ASAL_SEKOLAH']);
             
 	    //if ($data['tingkatan'] != 'smk'){
-            	if($data['tingkatan']=='smp')$pdf->addText($x+30, $pdf->y-$posY-$y-104, 8, "NILAI SEKOLAH");
-            	else $pdf->addText($x+30, $pdf->y-$posY-$y-104, 8, "NILAI AKHIR");
-                $pdf->addText($x+30, $pdf->y-$posY-$y-112, 8, "    - BAHASA INDONESIA");
-            	$pdf->addText($x+30, $pdf->y-$posY-$y-120, 8, "    - MATEMATIKA");
-            	$pdf->addText($x+30, $pdf->y-$posY-$y-128, 8, "    - IPA");
+            	if($data['tingkatan']=='smp'){
+                    $pdf->addText($x+$kiri, $pdf->y-$posY-$y-104, 8, "NILAI ");
+                    $pdf->addText($x+$val, $pdf->y-$posY-$y-104, 8, "RAPOR");
+                    $pdf->addText($x+$val+35, $pdf->y-$posY-$y-104, 8, "US");
+                    $pdf->addText($x+$val+70, $pdf->y-$posY-$y-104, 8, "AKHIR");
+                }
+            	else $pdf->addText($x+$kiri, $pdf->y-$posY-$y-104, 8, "NILAI AKHIR");
+                $pdf->addText($x+$kiri, $pdf->y-$posY-$y-112, 8, "    - BAHASA INDONESIA");
+            	$pdf->addText($x+$kiri, $pdf->y-$posY-$y-120, 8, "    - MATEMATIKA");
+            	$pdf->addText($x+$kiri, $pdf->y-$posY-$y-128, 8, "    - IPA");
             
-            
-            	$pdf->addText($x+140, $pdf->y-$posY-$y-112, 8, ": ".$data['UAN_BIND']);
-            	$pdf->addText($x+140, $pdf->y-$posY-$y-120, 8, ": ".$data['UAN_MAT']);
-            	$pdf->addText($x+140, $pdf->y-$posY-$y-128, 8, ": ".$data['UAN_IPA']);
+            	$pdf->addText($x+$val, $pdf->y-$posY-$y-112, 8, ": ".$data['UAN_BIND']);
+            	$pdf->addText($x+$val, $pdf->y-$posY-$y-120, 8, ": ".$data['UAN_MAT']);
+            	$pdf->addText($x+$val, $pdf->y-$posY-$y-128, 8, ": ".$data['UAN_IPA']);
             //}
 
             if ($data['tingkatan']=='smp'){
-                $pdf->addText($x+30, $pdf->y-$posY-$y-136, 8, "TOTAL NILAI");
+                $pdf->addText($x+$kiri, $pdf->y-$posY-$y-136, 8, "TOTAL NILAI");
                 
-                $pdf->addText($x+140, $pdf->y-$posY-$y-136, 8, ": ".$data['NUN_ASLI']);
-                                
+                $pdf->addText($x+$val, $pdf->y-$posY-$y-136, 8, ": ".$data['NUN_ASLI']);
+
+                $pdf->addText($x+$val+35, $pdf->y-$posY-$y-112, 8, $data['RAP_BIND']);
+                $pdf->addText($x+$val+35, $pdf->y-$posY-$y-120, 8, $data['RAP_MAT']);
+                $pdf->addText($x+$val+35, $pdf->y-$posY-$y-128, 8, $data['RAP_IPA']);
+                $pdf->addText($x+$val+35, $pdf->y-$posY-$y-136, 8, $data['NRAP_ASLI']);
+
+                $pdf->addText($x+$val+70, $pdf->y-$posY-$y-112, 8, $data['AKHIR_BIND']);
+                $pdf->addText($x+$val+70, $pdf->y-$posY-$y-120, 8, $data['AKHIR_MAT']);
+                $pdf->addText($x+$val+70, $pdf->y-$posY-$y-128, 8, $data['AKHIR_IPA']);
+                $pdf->addText($x+$val+70, $pdf->y-$posY-$y-136, 8, $data['NAKHIR_ASLI']);
             }
             else if ($data['tingkatan']=='sma'){
-                $pdf->addText($x+30, $pdf->y-$posY-$y-136, 8, "    - BAHASA INGGRIS");
-                $pdf->addText($x+30, $pdf->y-$posY-$y-148, 8, "TOTAL NILAI AKHIR");
+                $pdf->addText($x+$kiri, $pdf->y-$posY-$y-136, 8, "    - BAHASA INGGRIS");
+                $pdf->addText($x+$kiri, $pdf->y-$posY-$y-148, 8, "TOTAL NILAI AKHIR");
                 
-                $pdf->addText($x+140, $pdf->y-$posY-$y-136, 8, ": ".$data['UAN_BING']);
-                $pdf->addText($x+140, $pdf->y-$posY-$y-148, 8, ": ".$data['NUN_ASLI']);
+                $pdf->addText($x+$val, $pdf->y-$posY-$y-136, 8, ": ".$data['UAN_BING']);
+                $pdf->addText($x+$val, $pdf->y-$posY-$y-148, 8, ": ".$data['NUN_ASLI']);
             }
             else if ($data['tingkatan']=='smk'){
-                $pdf->addText($x+30, $pdf->y-$posY-$y-136, 8, "    - BAHASA INGGRIS");
-                $pdf->addText($x+30, $pdf->y-$posY-$y-144, 8, "TOTAL NILAI AKHIR");
-                $pdf->addText($x+30, $pdf->y-$posY-$y-152, 8, "NILAI TEST");
-                $pdf->addText($x+30, $pdf->y-$posY-$y-160, 8, "    - MINAT BAKAT");
-                $pdf->addText($x+30, $pdf->y-$posY-$y-168, 8, "    - KOMPETENSI KEAHLIAN");
+                $pdf->addText($x+$kiri, $pdf->y-$posY-$y-136, 8, "    - BAHASA INGGRIS");
+                $pdf->addText($x+$kiri, $pdf->y-$posY-$y-144, 8, "TOTAL NILAI AKHIR");
+                $pdf->addText($x+$kiri, $pdf->y-$posY-$y-152, 8, "NILAI TEST");
+                $pdf->addText($x+$kiri, $pdf->y-$posY-$y-160, 8, "    - MINAT BAKAT");
+                $pdf->addText($x+$kiri, $pdf->y-$posY-$y-168, 8, "    - KOMPETENSI KEAHLIAN");
                 // $data['ID_SEKOLAH'] = $data['ID_SEKOLAH']*100 + 1;
 		//$x = $x - 100;
                 
-                $pdf->addText($x+140, $pdf->y-$posY-$y-136, 8, ": ".$data['UAN_BING']);
-                $pdf->addText($x+140, $pdf->y-$posY-$y-144, 8, ": ".$data['NUN_ASLI']);
-                $pdf->addText($x+140, $pdf->y-$posY-$y-160, 8, ": ".$data['NTMB']);
-                $pdf->addText($x+140, $pdf->y-$posY-$y-168, 8, ": ".$data['NTK']);
-                $pdf->addText($x+320, $pdf->y-$posY-$y-112, 8, ": ".strtoupper($data['sekolah'][$data['PILIH1']]->NAMA_SEKOLAH));
+                $pdf->addText($x+$val, $pdf->y-$posY-$y-136, 8, ": ".$data['UAN_BING']);
+                $pdf->addText($x+$val, $pdf->y-$posY-$y-144, 8, ": ".$data['NUN_ASLI']);
+                $pdf->addText($x+$val, $pdf->y-$posY-$y-160, 8, ": ".$data['NTMB']);
+                $pdf->addText($x+$val, $pdf->y-$posY-$y-168, 8, ": ".$data['NTK']);
+                $pdf->addText($x+$val, $pdf->y-$posY-$y-112, 8, ": ".strtoupper($data['sekolah'][$data['PILIH1']]->NAMA_SEKOLAH));
             }
             
             $pdf->addText(230, $pdf->y-$posY-70, 10, strtoupper($data['sekolah'][$data['ID_SEKOLAH']]->NAMA_SEKOLAH));
             
-            $pdf->addText($x+220, $pdf->y-$posY-$y-104, 8, "JALUR DAFTAR");
-            $pdf->addText($x+220, $pdf->y-$posY-$y-112, 8, "PILIHAN SEKOLAH");
-            $pdf->addText($x+220, $pdf->y-$posY-$y-120, 8, "    1. PILIHAN 1");
-            $pdf->addText($x+220, $pdf->y-$posY-$y-128, 8, "    2. PILIHAN 2");
-            $pdf->addText($x+220, $pdf->y-$posY-$y-136, 8, "WAKTU PENDAFTARAN");
-            $pdf->addText($x+220, $pdf->y-$posY-$y-144, 8, "IP PENDAFTARAN");
-            $pdf->addText($x+220, $pdf->y-$posY-$y-152, 8, "ID PETUGAS");
+            $pdf->addText($x+$val3, $pdf->y-$posY-$y-104, 8, "JALUR DAFTAR");
+            $pdf->addText($x+$val3, $pdf->y-$posY-$y-112, 8, "PILIHAN SEKOLAH");
+            $pdf->addText($x+$val3, $pdf->y-$posY-$y-120, 8, "    1. PILIHAN 1");
+            $pdf->addText($x+$val3, $pdf->y-$posY-$y-128, 8, "    2. PILIHAN 2");
+            $pdf->addText($x+$val3, $pdf->y-$posY-$y-136, 8, "WAKTU PENDAFTARAN");
+            $pdf->addText($x+$val3, $pdf->y-$posY-$y-144, 8, "IP PENDAFTARAN");
+            $pdf->addText($x+$val3, $pdf->y-$posY-$y-152, 8, "ID PETUGAS");
             
-            $pdf->addText($x+320, $pdf->y-$posY-$y-104, 8, ": ".($data['JALUR_DAFTAR']==1?'PESERTA REGULER':($data['JALUR_DAFTAR']==0?'PESERTA TAHUN LALU':'PESERTA REKOMENDASI')));
-            $pdf->addText($x+320, $pdf->y-$posY-$y-120, 8, ": ".strtoupper(($data['tingkatan']=='smk'?$data['sekolah'][$data['PILIH1']]->JURUSAN:$data['sekolah'][$data['PILIH1']]->NAMA_SEKOLAH))." (".$data['PILIH1'].")");
-            $pdf->addText($x+320, $pdf->y-$posY-$y-128, 8, ": ".($data['PILIH2']==''? "TIDAK MEMILIH":
+            $pdf->addText($x+$data3, $pdf->y-$posY-$y-104, 8, ": ".($data['JALUR_DAFTAR']==1?'PESERTA REGULER':($data['JALUR_DAFTAR']==0?'PESERTA TAHUN LALU':'PESERTA REKOMENDASI')));
+            $pdf->addText($x+$data3, $pdf->y-$posY-$y-120, 8, ": ".strtoupper(($data['tingkatan']=='smk'?$data['sekolah'][$data['PILIH1']]->JURUSAN:$data['sekolah'][$data['PILIH1']]->NAMA_SEKOLAH))." (".$data['PILIH1'].")");
+            $pdf->addText($x+$data3, $pdf->y-$posY-$y-128, 8, ": ".($data['PILIH2']==''? "TIDAK MEMILIH":
                     strtoupper(($data['tingkatan']=='smk'?$data['sekolah'][$data['PILIH2']]->JURUSAN:$data['sekolah'][$data['PILIH2']]->NAMA_SEKOLAH))." (".$data['PILIH2'].")"));
-            $pdf->addText($x+320, $pdf->y-$posY-$y-136, 8, ": ".$data['WAKTU_DAFTAR']);
-            $pdf->addText($x+320, $pdf->y-$posY-$y-144, 8, ": ".$data['IP_ADDRESS']);
-            $pdf->addText($x+320, $pdf->y-$posY-$y-152, 8, ": ".$data['USER_FISIK']);
+            $pdf->addText($x+$data3, $pdf->y-$posY-$y-136, 8, ": ".$data['WAKTU_DAFTAR']);
+            $pdf->addText($x+$data3, $pdf->y-$posY-$y-144, 8, ": ".$data['IP_ADDRESS']);
+            $pdf->addText($x+$data3, $pdf->y-$posY-$y-152, 8, ": ".$data['USER_FISIK']);
             //$pdf->ezSetY($pdf->y-$posY);
             
         }

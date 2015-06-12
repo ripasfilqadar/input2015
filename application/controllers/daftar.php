@@ -198,7 +198,6 @@ class Daftar extends CI_Controller {
                             'UAN_IPA' => $this->input->post('nilai_ipa'),
                             'NUN_ASLI' => $this->input->post('nun_asli'),
 
-                            
                                 'RAP_BIND' => $this->input->post('nilai_bind2'),
                                 'RAP_MAT' => $this->input->post('nilai_mat2'),
                                 'RAP_IPA' => $this->input->post('nilai_ipa2'),
@@ -473,10 +472,12 @@ class Daftar extends CI_Controller {
     }
     
     function _step2() {
+        
         $data = array(
             'no_un' => $this->session->userdata('no_un'),
             'tingkatan' => $this->session->userdata('tingkatan')
         );
+        
         if (!$data['no_un']) redirect('daftar/'.$this->uri->segment(2).'/1');
         
         $endname = '1';
@@ -600,7 +601,7 @@ class Daftar extends CI_Controller {
                 'UAN_BIND' => $this->input->post('nilai_bind'.$endname),
                 'UAN_MAT' => $this->input->post('nilai_mat'.$endname),
                 'UAN_IPA' => $this->input->post('nilai_ipa'.$endname),
-                'NUN_ASLI' => $this->input->post('nun_asli'.$endname),
+               'NUN_ASLI' => $this->input->post('nun_asli'.$endname),
 
                 // 'RAP_BIND' => $this->input->post('nilai_bind2'.$endname),
                 // 'RAP_MAT' => $this->input->post('nilai_mat2'.$endname),
@@ -620,18 +621,24 @@ class Daftar extends CI_Controller {
 
             
             if($data['tingkatan']=='smp'){
-                    $pendaftar['UAN_BIND'] = $this->input->post('nilai_bind');
-                    $pendaftar['UAN_MAT'] = $this->input->post('nilai_mat');
-                    $pendaftar['UAN_IPA'] = $this->input->post('nilai_ipa');                        
 
-                    $pendaftar['RAP_BIND'] = $this->input->post('nilai_bind2'.$endname);
-                    $pendaftar['RAP_MAT'] = $this->input->post('nilai_mat2'.$endname);
-                    $pendaftar['RAP_IPA'] = $this->input->post('nilai_ipa2'.$endname);
+                $pendaftar['RAP_BIND'] = $this->input->post('nilai_bind2');
+                $pendaftar['RAP_MAT'] = $this->input->post('nilai_mat2');
+                $pendaftar['RAP_IPA'] = $this->input->post('nilai_ipa2');
+                $pendaftar['NRAP_ASLI'] = $pendaftar['RAP_BIND']+$pendaftar['RAP_MAT']+$pendaftar['RAP_IPA'];                     
+                echo "lalala";
+                print_r($pendaftar);
+                echo "lalala";
+                if (!$pendaftar['NRAP_ASLI']) $pendaftar['NRAP_ASLI'] = $pendaftar['RAP_BIND']+$pendaftar['RAP_MAT']+$pendaftar['RAP_IPA'];                     
 
-                    $pendaftar['AKHIR_BIND'] = $this->input->post('nilai_bind3'.$endname);
-                    $pendaftar['AKHIR_MAT'] = $this->input->post('nilai_mat3'.$endname);
-                    $pendaftar['AKHIR_IPA'] = $this->input->post('nilai_ipa3'.$endname);
-                }
+                $pendaftar['AKHIR_BIND'] =$pendaftar['UAN_BIND']*0.3+$pendaftar['RAP_BIND']*0.7;
+                $pendaftar['AKHIR_MAT'] = $pendaftar['UAN_MAT']*0.3+$pendaftar['RAP_MAT']*0.7;
+                $pendaftar['AKHIR_IPA'] = $pendaftar['UAN_IPA']*0.3+$pendaftar['RAP_IPA']*0.7;
+                $pendaftar['NAKHIR_ASLI'] = $pendaftar['NUN_ASLI']*0.3 + $pendaftar['NRAP_ASLI']*0.7;
+                $pendaftar['NUN_ASLI']=$pendaftar['UAN_BIND']+$pendaftar['UAN_MAT']+$pendaftar['UAN_IPA'];
+                    
+                if (!$pendaftar['NAKHIR_ASLI']) $pendaftar['NAKHIR_ASLI'] = $pendaftar['AKHIR_BIND']+$pendaftar['AKHIR_MAT']+$pendaftar['AKHIR_IPA'];                     
+            }
             
             if ($data['tingkatan'] != 'smp') {
                 $pendaftar['UAN_BING'] = $this->input->post('nilai_bing'.$endname);
@@ -643,9 +650,18 @@ class Daftar extends CI_Controller {
                 $pendaftar['KOTA'] = 'SIDOARJO';
             }
             
-            if (!$pendaftar['NUN_ASLI']) $pendaftar['NUN_ASLI'] = $pendaftar['UAN_BIND']+$pendaftar['UAN_MAT']+$pendaftar['UAN_IPA'];
+            // if (!$pendaftar['NUN_ASLI']) $pendaftar['NUN_ASLI'] = $pendaftar['UAN_BIND']+$pendaftar['UAN_MAT']+$pendaftar['UAN_IPA'];
            // if ($data['tingkatan'] != 'smk') {
+            if ($data['tingkatan'] == 'smp')
+            {
                 $pendaftar['NILAI_AKHIR'] = $pendaftar['NUN_ASLI'];
+
+                
+            }
+
+            else $pendaftar['NILAI_AKHIR'] = $pendaftar['NUN_ASLI'];
+
+            
 //            } else {
 //                $pendaftar['NTMB'] = $this->input->post('ntmb');
 //                $pendaftar['NTK'] = $this->input->post('ntk');
@@ -654,15 +670,17 @@ class Daftar extends CI_Controller {
             
                 $data = array('pendaftar' => $pendaftar);
                 $this->session->set_userdata($data);
-            print_r($pendaftar);
+           print_r($this->session->userdata('pendaftar'));
                 redirect('daftar/'.$this->uri->segment(2).'/3');
             }
+            
     }
     
     function _step3() {
+        
         if (!$this->session->userdata('no_un')) redirect('daftar/'.$this->uri->segment(2).'/1');
         $data = $this->session->userdata('pendaftar');
-
+        //print_r($this->session->userdata('pendaftar'));
         $data['_pendaftaran'] = 'Nomor Pendaftaran:';
         $data['_noun'] = 'Nomor UN:';
         $data['_jenjang'] = 'Jenjang Pilihan:';
@@ -703,8 +721,9 @@ class Daftar extends CI_Controller {
             foreach ($sekolah as $item) {
                 $data['sekolah'][$item->ID_SEKOLAH] = $item;
             }
-            
             if ($this->terdaftar_terakhir != null) $data['terdaftar_terakhir'] = $this->terdaftar_terakhir;
+            
+ 
             // if($data['tingkatan']=='smp')$data['_nilai'] = 'Nilai Akhir:';
             if($data['tingkatan']=='smp')$data['_nilaiakhir'] = 'Nilai Akhir:';
             $this->load->view('daftar/konfirmasi', $data);
@@ -715,7 +734,7 @@ class Daftar extends CI_Controller {
         
         if (!$this->session->userdata('no_un')) redirect('daftar/'.$this->uri->segment(2).'/1');
         $data = $this->session->userdata('pendaftar');
-        print_r($data);
+        //print_r($data);
         if (!$data) redirect('daftar/'.$this->uri->segment(2).'/1');
 
         if($data['NO_TINGKATAN'] != 1){
