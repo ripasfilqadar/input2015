@@ -65,7 +65,7 @@ class Pdf extends CI_Controller {
             $judul2 = "DINAS PENDIDIKAN";
             date_default_timezone_set('Asia/Jakarta');
             $judul3 = "Jl. Pahlawan No. 4, Sidoarjo, Telp. 031-8921219, 031-8940921";
-            $pdf->addJpegFromFile("images/logo-sidoarjo1.jpg",35,$pdf->y-$posY-55);
+            $pdf->addJpegFromFile("images/dinas2.png",35,$pdf->y-$posY-55);
             $pdf->addText(150, $pdf->y-$posY-9, 15, $judul1);
             $pdf->addText(215, $pdf->y-$posY-25, 16, $judul2);
             $pdf->addText(178, $pdf->y-$posY-35, 8, $judul3);
