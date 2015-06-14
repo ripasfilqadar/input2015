@@ -51,7 +51,7 @@ function tes2() {phpinfo();}
             }
             $tingkatan = ($this->tingkatan_sekolah == '1') ? 'smp' : (($this->tingkatan_sekolah == '2') ? 'sma' : (($this->tingkatan_sekolah == '3') ? 'smk' : ''));
             $this->m_pendaftar->set_tingkatan($tingkatan);
-            $pendaftar = $this->m_pendaftar->read('PID, NO_UJIAN, NAMA,NAKHIR_ASLI, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2', array('WAKTU_DAFTAR' => $tanggal), array('ID_SEKOLAH' => $this->id_sekolah), 'LOG_DAFTAR ASC')->result_array();
+            $pendaftar = $this->m_pendaftar->read('PID, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2', array('WAKTU_DAFTAR' => $tanggal), array('ID_SEKOLAH' => $this->id_sekolah), 'LOG_DAFTAR ASC')->result_array();
             
             $i = 0;
             foreach ($pendaftar as $key => $val) {
@@ -137,9 +137,9 @@ function tes2() {phpinfo();}
                 $where['JALUR_DAFTAR <>'] = 1;
             else
                 $where['JALUR_DAFTAR'] = 1;
-	    if ($tingkatan=='smp')
+	if ($tingkatan=='smp')
             $pendaftar = $this->m_pendaftar->read('PID, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2, NAKHIR_ASLI', $where, $where_escaped, 'NAMA ASC')->result_array();
-            else  $pendaftar = $this->m_pendaftar->read('PID, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2,NILAI_AKHIR', $where, $where_escaped, 'NAMA ASC')->result_array();
+        else  $pendaftar = $this->m_pendaftar->read('PID, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2,NILAI_AKHIR', $where, $where_escaped, 'NAMA ASC')->result_array();
 
             HeaderFooter($pdfku, $nama_sekolah, $pendaftar);
 
@@ -172,11 +172,13 @@ if ($tingkatan=='smp')
                 'LOG_DAFTAR'=>'WAKTU INPUT',
                 'PILIH1'=>'PILIHAN 1',
                 'PILIH2'=>'PILIHAN 2 ',
-                'NAKHIR_ASLI' => 'NILAI AKHIR'
+                'NAKHIR_ASLI' => 'NILAI_AKHIR'
             );
 }
-	if ($tingkatan!='smp'){
-	$cols_db=
+            
+else
+{
+            $cols_db=
             array
             (
                 'NO'=>'NO.',
@@ -187,12 +189,13 @@ if ($tingkatan=='smp')
                 'LOG_DAFTAR'=>'WAKTU INPUT',
                 'PILIH1'=>'PILIHAN 1',
                 'PILIH2'=>'PILIHAN 2 ',
-                'NILAI_AKHIR' => 'NILAI AKHIR'
+                'NILAI_AKHIR' => 'NILAI_AKHIR'
             );
-	}
+}
+
 if ($tingkatan=='smp')
 {
-            $option_db=
+$option_db=
             array
             (
                 'showHeadings'=>1,'shaded'=>0,'xPos'=>'center','xOrientation'=>'center','fontSize' => 6,
@@ -247,10 +250,10 @@ if ($tingkatan=='smp')
                 )
             );
 }
-	else if ($tingkatan!='smp')
-{
 
-            $option_db=
+
+else {
+$option_db=
             array
             (
                 'showHeadings'=>1,'shaded'=>0,'xPos'=>'center','xOrientation'=>'center','fontSize' => 6,
@@ -297,7 +300,7 @@ if ($tingkatan=='smp')
                                         'width'=>'80'
                     )
                     ,
-                   'NILAI_AKHIR'=>array
+                    'NILAI_AKHIR'=>array
                     (
                         'justification'=>'center',
                                         'width'=>'50'

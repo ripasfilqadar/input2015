@@ -213,6 +213,8 @@ class Cari extends CI_Controller {
         foreach ($sekolah as $item) {
             $data['sekolah'][$item->ID_SEKOLAH] = $item;
         }
+
+
         $this->load->view('cari/detail', $data);
     }
     

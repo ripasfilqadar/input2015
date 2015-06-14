@@ -466,7 +466,7 @@ class Daftar extends CI_Controller {
                     $this->session->set_userdata(array('pendaftar' => $data['pendaftar']));
                 }
             }
-
+//print_r($data['pendaftar']);
             redirect('daftar/'.$this->uri->segment(2).'/2');
         }
     }

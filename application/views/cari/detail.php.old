@@ -1,31 +1,29 @@
 <?php $this->load->view('base/header', array('namePage' => "Daftar Siswa Baru"));?>
 
 <div id="sidebar">
-    <?php $this->load->view('base/sidebar_menu');?>
-    <?php $this->load->view('base/sidebar_last_entry');?>
+    <?php $this->load->view('base/sidebar_menu');?> 
 </div>
 
 <div style="float:left;">
     <table width="500" border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td><h2>Perubahan berhasil</h2></td>
-        </tr>
-        <tr>
-            <td>Perubahan telah berhasil dilakukan dengan detail seperti di bawah ini.</td>
+            <td><h2>Detail Pendaftar</h2></td>
         </tr>
         <tr>
             <td>
-                <table class="tabeldalambesar" border="0" cellspacing="5" cellpadding="0" style="vertical-align: top;">
+                <table class="tabeldalambesar" border="0" cellspacing="5" cellpadding="0">
                     <tr>
                         <td class="style2">Nomor Urut</td>
                         <td>:</td>
                         <td><?php echo get_pendaftar_num_row($tingkatan, $PID, ($tingkatan == 'smk') ? $PILIH1 : $this->session->userdata('ID_SEKOLAH'), (strpos($this->session->userdata('HAK'), 'inputrekom') !== false) ? "<> 1" : "= 1"); ?></td>
                     </tr>
-                    <tr>
+		    <tr>
                         <td class="style2">Nomor Pendaftaran</td>
                         <td>:</td>
                         <td><?php echo $NO_PENDAFTARAN; ?></td>
                     </tr>
+                    <tr>
+
                     <tr>
                         <td class="style2">Nomor Ujian</td>
                         <td>:</td>
@@ -59,7 +57,7 @@
                     <tr>
                         <td class="style2">No.KK</td>
                         <td>:</td>
-                        <td><?php echo ($DOMISILI == '') ? '-' : $DOMISILI; ?></td>
+                        <td><?php echo $DOMISILI; ?></td>
                     </tr>
                     <tr>
                         <td class="style2">Sekolah Asal</td>
@@ -69,20 +67,20 @@
                     <tr>
                         <td class="style2">Nomor Telepon</td>
                         <td>:</td>
-                        <td><?php echo ($NO_TELP=='') ? '-' : $NO_TELP; ?></td>
+                        <td><?php echo $NO_TELP; ?></td>
                     </tr>
-                    <tr>
-                        <td class="style2">Nilai US Bahasa Indonesia</td>
+		    <tr>
+                        <td class="style2">Nilai <?php if($tingkatan=='smp')echo "Sekolah"; ?> Bahasa Indonesia</td>
                         <td>:</td>
                         <td><?php echo $UAN_BIND; ?></td>
                     </tr>
                     <tr>
-                        <td class="style2">Nilai US Matematika</td>
+                        <td class="style2">Nilai <?php if($tingkatan=='smp')echo "Sekolah"; ?> Matematika</td>
                         <td>:</td>
                         <td><?php echo $UAN_MAT; ?></td>
                     </tr>
                     <tr>
-                        <td class="style2">Nilai US IPA</td>
+                        <td class="style2">Nilai <?php if($tingkatan=='smp')echo "Sekolah"; ?> IPA</td>
                         <td>:</td>
                         <td><?php echo $UAN_IPA; ?></td>
                     </tr>
@@ -93,7 +91,7 @@
                         <td><?php echo $UAN_BING; ?></td>
                     </tr>
                     <?php } ?> 
-                    <?php if (false) { ?> 
+                    <?php if ($tingkatan == 'smk') { ?> 
                     <tr>
                         <td class="style2">NTMB</td>
                         <td>:</td>
@@ -106,57 +104,15 @@
                     </tr>
                     <?php } ?> 
                     <tr>
-                        <td class="style2">Nilai US Akhir</td>
+                        <td class="style2">Total Nilai</td>
                         <td>:</td>
                         <td><?php echo $NUN_ASLI; ?></td>
                     </tr>
-                    <?php if (false) { ?> 
+                    <?php if ($tingkatan == 'smk') { ?> 
                     <tr>
                         <td class="style2">Nilai Terpadu</td>
                         <td>:</td>
                         <td><?php echo $NILAI_AKHIR; ?></td>
-                    </tr>
-                    <?php } ?> 
-                    <?php if ($tingkatan == 'smp') { ?> 
-                    <tr>
-                        <td class="style2">Nilai Rapor Bahasa Indonesia</td>
-                        <td>:</td>
-                        <td><?php echo $RAP_BIND; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="style2">Nilai Rapor Matematika</td>
-                        <td>:</td>
-                        <td><?php echo $RAP_MAT; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="style2">Nilai Rapor IPA</td>
-                        <td>:</td>
-                        <td><?php echo $RAP_IPA; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="style2">Nilai Rapor Akhir</td>
-                        <td>:</td>
-                        <td><?php echo $NRAP_ASLI; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="style2">Nilai Akhir Bahasa Indonesia</td>
-                        <td>:</td>
-                        <td><?php echo $AKHIR_BIND; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="style2">Nilai Akhir Matematika</td>
-                        <td>:</td>
-                        <td><?php echo $AKHIR_MAT; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="style2">Nilai Akhir IPA</td>
-                        <td>:</td>
-                        <td><?php echo $AKHIR_IPA; ?></td>
-                    </tr>
-                    <tr>
-                        <td class="style2">Nilai Total Akhir</td>
-                        <td>:</td>
-                        <td><?php echo $NAKHIR_ASLI; ?></td>
                     </tr>
                     <?php } ?> 
                     <tr>
@@ -171,19 +127,22 @@
                             <?php echo ($PILIH2) ? (($tingkatan != 'smk') ? $sekolah[$PILIH2]->NAMA_SEKOLAH : $sekolah[$PILIH2]->JURUSAN) : '(tidak memilih)'; ?> <br />
                         </td>
                     </tr>
-                                        <tr>
-                        <td class="style2">Tanggal Pendaftaran</td>
+                    <tr>
+                        <td class="style2">Tanggal dan Waktu Pendaftaran</td>
                         <td>:</td>
                         <td><?php echo $WAKTU_DAFTAR; ?></td>
-                    </tr>
+                    </tr>v
                     <tr>
                         <td class="style2">IP Pendaftaran</td>
                         <td>:</td>
                         <td><?php echo $IP_ADDRESS; ?></td>
                     </tr>
                 </table>
-                <!--<?php //echo anchor('pdf/cetak/'.$tingkatan.'/'.$NO_UJIAN, 'Cetak', 'style="color: blue;"'); ?>-->
-                <?php echo "<a href=".site_url('pdf/cetak/').'/'.$tingkatan.'/'.$NO_UJIAN." target='_blank'><button>Cetak</button></a>"; ?>
+                <?php echo "<a target='_blank' href=".site_url('pdf/cetak/').'/'.$tingkatan.'/'.$NO_UJIAN."><button>Cetak</button></a>"; ?>
+                <!--<?php //echo anchor('pdf/cetak/'.$tingkatan.'/'.$NO_UJIAN, 'Cetak', 'style="color: blue;"'); ?>--> 
+                <?php echo ($this->session->userdata('HAK') == 'admin') ? anchor('daftar/edit/'.$tingkatan.'/'.$NO_UJIAN.'/1', 'Edit', 'style="color: blue;"') : ''; ?> 
+                <?php echo ($this->session->userdata('HAK') == 'inputsmk') ? anchor('daftar/ntmbntk/'.$NO_UJIAN, 'Input NTMB/NTK', 'style="color: blue;"') : '' ?>
+                <?php echo ($this->session->userdata('HAK') == 'inputrekomsmk') ? anchor('daftar/ntmbntk/'.$NO_UJIAN, 'Input NTMB/NTK', 'style="color: blue;"') : '' ?> 
             </td>
         </tr>
     </table>

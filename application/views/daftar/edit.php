@@ -531,17 +531,17 @@
                                                 </tbody>
                                             </table>
                                         </td>
-                                        <td><button onclick="editus()">Perubahan Nilai</button></td>
+                                        <td><input type='button' onclick="editus()"  style="height:40px;" value="Perubahan Nilai"></td>
                                     </tr>
                                     <tr style="visibility:hidden" id="perubahan">
                                         <td id="alasanlabel" class="tddfkiri" valign="top"><label>Alasan Perubahan</label> </td>
                                         <td><input name="alasan" id="alasan" style="height:40px; width:340px" ></td>
-                                        <td><button type="submit" onclick="saveus()" id="tombolubah" style="visibility:hidden;">Simpan Nilai</button></td>
+                                        <td><input type="button"  onclick="saveus()" id="tombolubah" style="visibility:hidden;height:40px;" value="Simpan Nilai"></td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td></td>
-                                        <td><button onclick="cancelus()"  id="cancelus1" style="visibility:hidden;">Batalkan Perubahan</button></td>
+                                        <td><input type="button" onclick="cancelus()"  id="cancelus1" style="visibility:hidden;height:40px;" value="Batalkan Perubahan"></td>
                                     </tr>
                                     <tr>
                                         <td class="tddfkiri" valign="top"><label>Nilai Akhir</label> </td>
@@ -914,6 +914,7 @@ $("#pilih2").change(function(){ //change pilih2
     var bind, ipa, mat;
     function editus()
     {
+	
         window.bind = document.getElementById('nilai_bind2').value;
         window.ipa = document.getElementById('nilai_ipa2').value;
         window.mat = document.getElementById('nilai_mat2').value;
@@ -927,13 +928,14 @@ $("#pilih2").change(function(){ //change pilih2
         // document.getElementById('nus_asli').disabled='';
         document.getElementById('tombolubah').style.visibility='visible';
         document.getElementById('cancelus1').style.visibility='visible';
-
-        var x=window.confirm("Perhatian! setiap perubahan akan dicatat, harap disesuaikan dengan dokumen aslinya");
+var x=window.confirm("Perhatian! setiap perubahan akan dicatat, harap disesuaikan dengan dokumen aslinya");
         if(x) 
-            window.alert("Silahkan melakukan proses perubahan data")
+            window.alert("Silahkan melakukan proses perubahan data");
         else
-            window.alert("Perubahan dibatalkan")
-    }
+            window.alert("Perubahan dibatalkan");
+
+
+            }
     
     function cancelus()
     {
