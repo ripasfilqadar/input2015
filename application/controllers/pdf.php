@@ -5,6 +5,7 @@ class Pdf extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('session');
+        $this->load->library('ciqrcode');
         $this->load->helper('url');
         $this->load->helper('mydb');
         
@@ -44,9 +45,20 @@ class Pdf extends CI_Controller {
                 $data['sekolah'][$id] = $item;
             }
         }
-        
-        $datacetak = "ppdbsda".$tingkatan.$no_un."p1".$data['PILIH1']."p2".$data['PILIH2']."bismillah2013";
-        $data['kodecetak'] = substr(md5(base64_encode($datacetak)),-10);
+
+        $datacetak = "ppdbsda".$tingkatan.$no_un."p1".$data['PILIH1']."p2".$data['PILIH2']."bismillah2015";
+        // $data['kodecetak'] = substr(md5(base64_encode($datacetak)),-10);
+        $data['kodecetak'] = substr(md5(base64_encode($datacetak)),0);
+
+        $params['data'] = $data['kodecetak'];
+        $params['level'] = 'H';
+        $params['size'] = 3;
+        // $params['savename'] = FCPATH.$data['kodecetak'].".jpg";
+        $params['savename'] = FCPATH.'qrcode/'.$data['kodecetak'].".png";
+        $this->ciqrcode->generate($params);
+        // echo base_url().$data['kodecetak'];
+        // echo '<img src="'.base_url().'qrcode/'.$data['kodecetak'].'.png"/>';
+        // echo($datacetak);
         //$data['coba'] = $datacetak;
         //$data['coba2'] = md5(base64_encode($datacetak));
         
@@ -54,17 +66,28 @@ class Pdf extends CI_Controller {
         $this->template($mypdf, $data);
         $this->template($mypdf, $data, ($mypdf->y)/2 + 10, 'Untuk Sekolah');
         $mypdf->addText(15, $mypdf->y/2 +15, 10, "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - POTONG DISINI - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - ");
+        
         $mypdf->output();
 
         $mypdf->ezStream();
     }
     
     public function template($pdf, $data, $posY = 0, $statement='Untuk Pendaftar'){
+
+            $y=90;
+            $x=80;
+            $val=85;
+            $kiri=-20;
+            $val3=250;
+            $data3=350;
+
             $judul1 = "PEMERINTAH KABUPATEN SIDOARJO";
             $judul2 = "DINAS PENDIDIKAN";
             date_default_timezone_set('Asia/Jakarta');
             $judul3 = "Jl. Pahlawan No. 4, Sidoarjo, Telp. 031-8921219, 031-8940921";
-            $pdf->addJpegFromFile("images/logo-sidoarjo1.jpg",30,$pdf->y-$posY-55);
+            $path="images/logo-sidoarjo1.png";
+         $pdf->addJpegFromFile($path,30,$pdf->y-$posY-55);
+        $pdf->addJpegFromFile("qrcode/coba.jpg", $x+$val3, $pdf->y-$posY-$y);
             $pdf->addText(150, $pdf->y-$posY-9, 15, $judul1);
             $pdf->addText(215, $pdf->y-$posY-25, 16, $judul2);
             $pdf->addText(178, $pdf->y-$posY-35, 8, $judul3);
@@ -73,7 +96,7 @@ class Pdf extends CI_Controller {
             $pdf->ezTable($statement);
             $pdf->addText(480, $pdf->y-$posY-20, 12, $statement);
             //510
-            $pdf->addText(515, $pdf->y-$posY+5, 9, $data['kodecetak']);
+            $pdf->addText(500, $pdf->y-$posY+5, 9, $data['kodecetak']);
             $pdf->addText(150, $pdf->y-$posY-60, 14, "BUKTI PENDAFTARAN PESERTA DIDIK BARU");
             //$pdf->addText(230, $pdf->y-$posY-70, 10, strtoupper($data['sekolah'][$data['ID_SEKOLAH']]->NAMA_SEKOLAH));
                         
@@ -92,14 +115,11 @@ class Pdf extends CI_Controller {
                 $pdf->addText(390, $pdf->y-$posY-290, 9, "Orang Tua / Wali / Pendaftar");
                 $pdf->addText(62, $pdf->y-$posY-350, 9, "(. . . . . . . . . . . . . . . . . . . . . .)");
                 $pdf->addText(390, $pdf->y-$posY-350, 9, "(. . . . . . . . . . . . . . . . . . . . . .)");
-            
 
-            $y=90;
-            $x=80;
-            $val=85;
-            $kiri=-20;
-            $val3=250;
-            $data3=350;
+           // echo  base_url().'qrcode/'.$data['kodecetak'].".png";
+            $path=$data['kodecetak'];
+          //  echo "qrcode/".$path."'.png'";
+            $pdf->addJpegFromFile("qrcode/coba.jpg", $x+$val3, $pdf->y-$posY-$y);
 
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y, 8, "NOMOR PENDAFTARAN"); 
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-8, 8, "NOMOR UN");
@@ -274,7 +294,8 @@ class Pdf extends CI_Controller {
         }
         
         $datacetak = "ppdbsda".$tingkatan.$no_un."p1".$data['PILIH1']."p2".$data['PILIH2']."bismillah2013";
-        $data['kodecetak'] = substr(md5(base64_encode($datacetak)),-10);
+        // $data['kodecetak'] = substr(md5(base64_encode($datacetak)),-10);
+        $data['kodecetak'] = substr(md5(base64_encode($datacetak)),0);
         
         //$data['coba'] = $datacetak;
         //$data['coba2'] = md5(base64_encode($datacetak));

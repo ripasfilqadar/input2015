@@ -626,9 +626,9 @@ class Daftar extends CI_Controller {
                 $pendaftar['RAP_MAT'] = $this->input->post('nilai_mat2');
                 $pendaftar['RAP_IPA'] = $this->input->post('nilai_ipa2');
                 $pendaftar['NRAP_ASLI'] = $pendaftar['RAP_BIND']+$pendaftar['RAP_MAT']+$pendaftar['RAP_IPA'];                     
-                echo "lalala";
-                print_r($pendaftar);
-                echo "lalala";
+                // echo "lalala";
+                // print_r($pendaftar);
+                // echo "lalala";
                 if (!$pendaftar['NRAP_ASLI']) $pendaftar['NRAP_ASLI'] = $pendaftar['RAP_BIND']+$pendaftar['RAP_MAT']+$pendaftar['RAP_IPA'];                     
 
                 $pendaftar['AKHIR_BIND'] =$pendaftar['UAN_BIND']*0.3+$pendaftar['RAP_BIND']*0.7;
