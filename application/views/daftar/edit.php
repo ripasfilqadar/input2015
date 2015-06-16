@@ -174,7 +174,29 @@
             var dateRegex = /^(0[0-9]|[12][0-9]|3[01])\/(0[0-9]|1[012])\/(19|20|00)\d\d/;
             return dateRegex.test(value);
         }).setMessage('valid_date', '%s harus ditulis dengan format dd/mm/yyyy.');
-        <?php } ?> 
+        <?php } ?>
+	
+	 bind = document.getElementById('nilai_bind').value;
+        ipa = document.getElementById('nilai_ipa').value;
+        mat = document.getElementById('nilai_mat').value;
+        akhir = document.getElementById('nun_asli').value;
+
+        bind2=document.getElementById('nilai_bind2').value;
+        document.getElementById('nilai_bind2_hidden').value=bind2;
+        ipa2=document.getElementById('nilai_ipa2').value;
+        document.getElementById('nilai_ipa2_hidden').value=ipa2;
+        mat2=document.getElementById('nilai_mat2').value;
+        document.getElementById('nilai_mat2_hidden').value=mat2;
+        
+        document.getElementById('nrap_asli').value=parseFloat(bind2)+parseFloat(ipa2)+parseFloat(mat2);
+
+        akhir2 = document.getElementById('nrap_asli').value
+
+        document.getElementById('nilai_bind3').value=parseFloat(bind2)*0.7 + parseFloat(bind)*0.3 ;
+        document.getElementById('nilai_mat3').value=parseFloat(mat2)*0.7 + parseFloat(mat)*0.3;
+        document.getElementById('nilai_ipa3').value=parseFloat(ipa2)*0.7 + parseFloat(ipa)*0.3;
+        document.getElementById('nakhir_asli').value=parseFloat(akhir2)*0.7 + parseFloat(akhir)*0.3;
+ 
     }
 </script>
 
@@ -958,6 +980,7 @@ $("#pilih2").change(function(){ //change pilih2
         // document.getElementById('nus_asli').disabled='';
         document.getElementById('tombolubah').style.visibility='hidden';
         document.getElementById('cancelus1').style.visibility='hidden';
+	sum();
     }
 
     function saveus()
