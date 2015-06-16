@@ -472,7 +472,6 @@ class Daftar extends CI_Controller {
     }
     
     function _step2() {
-        
         $data = array(
             'no_un' => $this->session->userdata('no_un'),
             'tingkatan' => $this->session->userdata('tingkatan')
@@ -549,7 +548,6 @@ class Daftar extends CI_Controller {
             $data['_pilihan'] = 'Pilihan ';
             $data['_jalur'] =$this->uri->segment(2);
             
-            
             foreach ($sekolah as $item) {
                 $data['sekolah'][$item->ID_SEKOLAH] = $item;
             }
@@ -625,7 +623,9 @@ class Daftar extends CI_Controller {
                 $pendaftar['RAP_BIND'] = $this->input->post('nilai_bind2');
                 $pendaftar['RAP_MAT'] = $this->input->post('nilai_mat2');
                 $pendaftar['RAP_IPA'] = $this->input->post('nilai_ipa2');
-                $pendaftar['NRAP_ASLI'] = $pendaftar['RAP_BIND']+$pendaftar['RAP_MAT']+$pendaftar['RAP_IPA'];                     
+                $pendaftar['NRAP_ASLI'] = $pendaftar['RAP_BIND']+$pendaftar['RAP_MAT']+$pendaftar['RAP_IPA']; 
+                $pendaftar['FLAG_ALASAN'] = $this->input->post('flag');                   
+                $pendaftar['ALASAN'] = $this->input->post('alasan');
                 // echo "lalala";
                 // print_r($pendaftar);
                 // echo "lalala";
@@ -670,7 +670,7 @@ class Daftar extends CI_Controller {
             
                 $data = array('pendaftar' => $pendaftar);
                 $this->session->set_userdata($data);
-           print_r($this->session->userdata('pendaftar'));
+                 // print_r($this->session->userdata('pendaftar'));
                 redirect('daftar/'.$this->uri->segment(2).'/3');
             }
             
@@ -680,7 +680,7 @@ class Daftar extends CI_Controller {
         
         if (!$this->session->userdata('no_un')) redirect('daftar/'.$this->uri->segment(2).'/1');
         $data = $this->session->userdata('pendaftar');
-        //print_r($this->session->userdata('pendaftar'));
+        // print_r($data);
         $data['_pendaftaran'] = 'Nomor Pendaftaran:';
         $data['_noun'] = 'Nomor UN:';
         $data['_jenjang'] = 'Jenjang Pilihan:';
@@ -701,7 +701,6 @@ class Daftar extends CI_Controller {
         $data['_mendaftar'] = 'Mendaftar di:';
         $data['_telp'] = 'No Telepon:';
         $data['_pilihan'] = 'Pilihan ';
-        
         
         if (!$data) redirect('daftar/'.$this->uri->segment(2).'/1');
         if ($this->input->post('act') == 'Daftar') {
@@ -734,7 +733,7 @@ class Daftar extends CI_Controller {
         
         if (!$this->session->userdata('no_un')) redirect('daftar/'.$this->uri->segment(2).'/1');
         $data = $this->session->userdata('pendaftar');
-        //print_r($data);
+        // var_dump($this->session->userdata);
         if (!$data) redirect('daftar/'.$this->uri->segment(2).'/1');
 
         if($data['NO_TINGKATAN'] != 1){
@@ -763,7 +762,8 @@ class Daftar extends CI_Controller {
             'AKHIR_IPA' => $data['AKHIR_IPA'],
             'NAKHIR_ASLI' => $data['NAKHIR_ASLI'],
             'WAKTU_DAFTAR' => 'CURDATE()',
-            'LOG_DAFTAR' => 'NOW()'
+            'LOG_DAFTAR' => 'NOW()',
+            'FLAG_ALASAN' => $data['FLAG_ALASAN']
             );
         }
         
@@ -782,6 +782,7 @@ class Daftar extends CI_Controller {
             unset($data['AKHIR_MAT']);
             unset($data['AKHIR_IPA']);
             unset($data['NAKHIR_ASLI']);
+            unset($data['FLAG_ALASAN']);
         }
 
         $data['NAMA'] = strtoupper($data['NAMA']);
@@ -840,6 +841,10 @@ class Daftar extends CI_Controller {
                 unset($data['terdaftar']);
             
             $this->m_pendaftar->set_tingkatan($tingkatan);
+            echo "<pre>";
+            // var_dump($data);
+            // var_dump($data_escaped);
+            echo "</pre>";
             $pid = $this->m_pendaftar->create($data, $data_escaped);
             $this->session->set_userdata(array('terdaftar_terakhir' => array('pid' => $pid, 'tingkatan' => $tingkatan)));
         }

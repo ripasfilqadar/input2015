@@ -176,7 +176,7 @@
         }).setMessage('valid_date', '%s harus ditulis dengan format dd/mm/yyyy.');
         <?php } ?>
 	
-	 bind = document.getElementById('nilai_bind').value;
+	    bind = document.getElementById('nilai_bind').value;
         ipa = document.getElementById('nilai_ipa').value;
         mat = document.getElementById('nilai_mat').value;
         akhir = document.getElementById('nun_asli').value;
@@ -543,25 +543,26 @@
                                                     <tr>
                                                         <td>
                                                             <input id="nilai_bind22" onchange="sum()" name="nilai_bind22" size="7" type="hidden" style="margin-top: 5px;" value="<?php echo $pendaftar->RAP_BIND; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
-                                                            <input id="nilai_bind2" onchange="sum()" name="nilai_bind2" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->RAP_BIND; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
+                                                            <input id="nilai_bind2" onchange="sum()" name="nilai_bind2" size="7" type="number" style="margin-top: 5px;width:78px" value="<?php echo $pendaftar->RAP_BIND; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
                                                         </td>
-                                                        <td>
+                                                        <td width="50px">
                                                             <input id="nilai_mat22" onchange="sum()" name="nilai_mat22" size="7" type="hidden" style="margin-top: 5px;" value="<?php echo $pendaftar->RAP_MAT; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
-                                                            <input id="nilai_mat2" onchange="sum()" name="nilai_mat2" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->RAP_MAT; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
+                                                            <input id="nilai_mat2" onchange="sum()" name="nilai_mat2" size="7" type="number" style="margin-top: 5px;width:78px" value="<?php echo $pendaftar->RAP_MAT; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
                                                         </td>
                                                         <td>
                                                             <input id="nilai_ipa22" onchange="sum()" name="nilai_ipa22" size="7" type="hidden" style="margin-top: 5px;" value="<?php echo $pendaftar->RAP_IPA; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
-                                                            <input id="nilai_ipa2" onchange="sum()" name="nilai_ipa2" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->RAP_IPA; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> /></td>
+                                                            <input id="nilai_ipa2" onchange="sum()" name="nilai_ipa2" size="7" type="number" style="margin-top: 5px;width:78px" value="<?php echo $pendaftar->RAP_IPA; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> /></td>
                                                         <?php if ($this->uri->segment(2) == 'baru') { ?><td><input id="nrap_asli" name="nrap_asli" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->NRAP_ASLI; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="enabled"' : ''; ?> /></td><?php } ?> 
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </td>
                                         <td><input type='button' onclick="editus()"  style="height:40px;" value="Perubahan Nilai"></td>
+                                        <input id="flag" name="flag" type="hidden" value="0">
                                     </tr>
                                     <tr style="visibility:hidden" id="perubahan">
                                         <td id="alasanlabel" class="tddfkiri" valign="top"><label>Alasan Perubahan</label> </td>
-                                        <td><input name="alasan" id="alasan" style="height:40px; width:340px" ></td>
+                                        <td><input name="alasan" id="alasan" style="height:40px; width:340px" value="<?php if(isset($pendaftar->ALASAN)) echo $pendaftar->ALASAN;  ?>" ></td>
                                         <td><input type="button"  onclick="saveus()" id="tombolubah" style="visibility:hidden;height:40px;" value="Simpan Nilai"></td>
                                     </tr>
                                     <tr>
@@ -582,7 +583,7 @@
                                                 <tbody align="center" style="background-color: #ffffff">
                                                     <tr>
                                                         <td>
-                                                            <input  id="nilai_bind3" name="nilai_bind3" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->AKHIR_BIND; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
+                                                            <input id="nilai_bind3" name="nilai_bind3" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->AKHIR_BIND; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
                                                         </td>
                                                         <td>
                                                             <input id="nilai_mat3" name="nilai_mat3" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->AKHIR_MAT; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
@@ -937,7 +938,7 @@ $("#pilih2").change(function(){ //change pilih2
 <?php $this->load->view('base/footer')?>
 
 <script type="text/javascript">
-    var bind, ipa, mat;
+    var bind, ipa, mat, flag;
 
     // bind = document.getElementById('nilai_bind2').value;
     // ipa = document.getElementById('nilai_ipa2').value;
@@ -985,23 +986,27 @@ $("#pilih2").change(function(){ //change pilih2
 
     function saveus()
     {
+        window.flag = document.getElementById("flag");
         bind = document.getElementById('nilai_bind2').value;
         ipa = document.getElementById('nilai_ipa2').value;
         mat = document.getElementById('nilai_mat2').value;
 
         if(document.getElementById('alasan').value!=''){
-            if(bind>10 || ipa>10 || mat>10) window.alert("Format nilai yang anda masukkan salah");
+            if(bind>10 || bind<0 || ipa>10 || ipa<0 || mat>10 || mat<0) 
+                window.alert("Format nilai yang anda masukkan salah");
             else{
-                document.getElementById('alasan').disabled='disabled';
+                document.getElementById('alasan').disabled='';
                 document.getElementById('nilai_bind2').disabled='disabled';
                 document.getElementById('nilai_ipa2').disabled='disabled';
                 document.getElementById('nilai_mat2').disabled='disabled';
 
                 // document.getElementById('nus_asli').disabled='disabled';
-
-                var x=window.confirm("Apakah data nilai yang anda masukkan sudah benar? Data yang anda rubah sangat berpengaruh pada penilaian, mohon ketelitiannya")
-                if (x)
+                var x = window.confirm("Apakah data nilai yang anda masukkan sudah benar? Data yang anda rubah sangat berpengaruh pada penilaian, mohon ketelitiannya");
+                if (x){
                     window.alert("Perubahan data berhasil dilakukan")
+                        // console.log(window.flag.value);
+                        window.flag.value = "1";
+                }
                 else
                     window.alert("Perubahan batal dilakukan")
             }
