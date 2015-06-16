@@ -5,7 +5,11 @@ class Pdf extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('session');
+<<<<<<< HEAD
         // $this->load->library('ciqrcode');
+=======
+        //$this->load->library('ciqrcode');
+>>>>>>> 71163a9daea09fc3e2ce53f8bae7ffac6b6c636a
         $this->load->helper('url');
         $this->load->helper('mydb');
         
@@ -50,12 +54,21 @@ class Pdf extends CI_Controller {
         // $data['kodecetak'] = substr(md5(base64_encode($datacetak)),-10);
         $data['kodecetak'] = substr(md5(base64_encode($datacetak)),0);
 
+<<<<<<< HEAD
         // $params['data'] = $data['kodecetak'];
         // $params['level'] = 'H';
         // $params['size'] = 3;
         // // $params['savename'] = FCPATH.$data['kodecetak'].".jpg";
         // $params['savename'] = FCPATH.'qrcode/'.$data['kodecetak'].".png";
         // $this->ciqrcode->generate($params);
+=======
+        $params['data'] = $data['kodecetak'];
+        $params['level'] = 'H';
+        $params['size'] = 3;
+        // $params['savename'] = FCPATH.$data['kodecetak'].".jpg";
+        $params['savename'] = FCPATH.'qrcode/'.$data['kodecetak'].".png";
+        //$this->ciqrcode->generate($params);
+>>>>>>> 71163a9daea09fc3e2ce53f8bae7ffac6b6c636a
         // echo base_url().$data['kodecetak'];
         // echo '<img src="'.base_url().'qrcode/'.$data['kodecetak'].'.png"/>';
         // echo($datacetak);
@@ -85,9 +98,9 @@ class Pdf extends CI_Controller {
             $judul2 = "DINAS PENDIDIKAN";
             date_default_timezone_set('Asia/Jakarta');
             $judul3 = "Jl. Pahlawan No. 4, Sidoarjo, Telp. 031-8921219, 031-8940921";
-            $path="images/logo-sidoarjo1.png";
-         $pdf->addJpegFromFile($path,30,$pdf->y-$posY-55);
-        $pdf->addJpegFromFile("qrcode/coba.jpg", $x+$val3, $pdf->y-$posY-$y);
+            $path="images/logo-sidoarjo1.jpg";
+            $pdf->addJpegFromFile($path,30,$pdf->y-$posY-55);
+        //$pdf->addJpegFromFile("qrcode/coba.jpg", $x+$val3, $pdf->y-$posY-$y);
             $pdf->addText(150, $pdf->y-$posY-9, 15, $judul1);
             $pdf->addText(215, $pdf->y-$posY-25, 16, $judul2);
             $pdf->addText(178, $pdf->y-$posY-35, 8, $judul3);

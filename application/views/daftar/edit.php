@@ -990,10 +990,13 @@ $("#pilih2").change(function(){ //change pilih2
         bind = document.getElementById('nilai_bind2').value;
         ipa = document.getElementById('nilai_ipa2').value;
         mat = document.getElementById('nilai_mat2').value;
-
         if(document.getElementById('alasan').value!=''){
+<<<<<<< HEAD
             if(bind>10 || bind<0 || ipa>10 || ipa<0 || mat>10 || mat<0) 
                 window.alert("Format nilai yang anda masukkan salah");
+=======
+            if(bind>10 || bind<0 || ipa>10 || ipa<0 || mat<0 || mat>10) window.alert("Format nilai yang anda masukkan salah");
+>>>>>>> 71163a9daea09fc3e2ce53f8bae7ffac6b6c636a
             else{
                 document.getElementById('alasan').disabled='';
                 document.getElementById('nilai_bind2').disabled='disabled';
