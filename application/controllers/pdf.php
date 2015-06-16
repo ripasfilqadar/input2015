@@ -5,7 +5,11 @@ class Pdf extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('session');
+<<<<<<< HEAD
+        // $this->load->library('ciqrcode');
+=======
         //$this->load->library('ciqrcode');
+>>>>>>> 71163a9daea09fc3e2ce53f8bae7ffac6b6c636a
         $this->load->helper('url');
         $this->load->helper('mydb');
         
@@ -50,12 +54,21 @@ class Pdf extends CI_Controller {
         // $data['kodecetak'] = substr(md5(base64_encode($datacetak)),-10);
         $data['kodecetak'] = substr(md5(base64_encode($datacetak)),0);
 
+<<<<<<< HEAD
+        // $params['data'] = $data['kodecetak'];
+        // $params['level'] = 'H';
+        // $params['size'] = 3;
+        // // $params['savename'] = FCPATH.$data['kodecetak'].".jpg";
+        // $params['savename'] = FCPATH.'qrcode/'.$data['kodecetak'].".png";
+        // $this->ciqrcode->generate($params);
+=======
         $params['data'] = $data['kodecetak'];
         $params['level'] = 'H';
         $params['size'] = 3;
         // $params['savename'] = FCPATH.$data['kodecetak'].".jpg";
         $params['savename'] = FCPATH.'qrcode/'.$data['kodecetak'].".png";
         //$this->ciqrcode->generate($params);
+>>>>>>> 71163a9daea09fc3e2ce53f8bae7ffac6b6c636a
         // echo base_url().$data['kodecetak'];
         // echo '<img src="'.base_url().'qrcode/'.$data['kodecetak'].'.png"/>';
         // echo($datacetak);
@@ -78,8 +91,8 @@ class Pdf extends CI_Controller {
             $x=80;
             $val=85;
             $kiri=-20;
-            $val3=250;
-            $data3=350;
+            $val3=200;
+            $data3=300;
 
             $judul1 = "PEMERINTAH KABUPATEN SIDOARJO";
             $judul2 = "DINAS PENDIDIKAN";
@@ -201,7 +214,7 @@ class Pdf extends CI_Controller {
                 $pdf->addText($x+$val, $pdf->y-$posY-$y-144, 8, ": ".$data['NUN_ASLI']);
                 $pdf->addText($x+$val, $pdf->y-$posY-$y-160, 8, ": ".$data['NTMB']);
                 $pdf->addText($x+$val, $pdf->y-$posY-$y-168, 8, ": ".$data['NTK']);
-                $pdf->addText($x+$val, $pdf->y-$posY-$y-112, 8, ": ".strtoupper($data['sekolah'][$data['PILIH1']]->NAMA_SEKOLAH));
+                $pdf->addText($x+$data3, $pdf->y-$posY-$y-112, 8, ": ".strtoupper($data['sekolah'][$data['PILIH1']]->NAMA_SEKOLAH));
             }
             
             $pdf->addText(230, $pdf->y-$posY-70, 10, strtoupper($data['sekolah'][$data['ID_SEKOLAH']]->NAMA_SEKOLAH));

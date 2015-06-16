@@ -83,7 +83,7 @@ function tes2() {phpinfo();}
                 $dpdf->addJpegFromFile("images/logo-sidoarjo1.jpg",35,760);
                 $text = "<b>DAFTAR CALON SISWA YANG MENDAFTAR DI</b>";
                 $school = "<b>".$nama_sekolah."</b>";
-                $tahun = "<b>TAHUN AJARAN 2014/2015</b>";
+                $tahun = "<b>TAHUN AJARAN 2015/2016</b>";
                 $count=-1;
                 foreach ($pendaftar as $key) {
                     $count++;
