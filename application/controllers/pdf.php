@@ -5,7 +5,7 @@ class Pdf extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('session');
-        $this->load->library('ciqrcode');
+        //$this->load->library('ciqrcode');
         $this->load->helper('url');
         $this->load->helper('mydb');
         
@@ -55,7 +55,7 @@ class Pdf extends CI_Controller {
         $params['size'] = 3;
         // $params['savename'] = FCPATH.$data['kodecetak'].".jpg";
         $params['savename'] = FCPATH.'qrcode/'.$data['kodecetak'].".png";
-        $this->ciqrcode->generate($params);
+        //$this->ciqrcode->generate($params);
         // echo base_url().$data['kodecetak'];
         // echo '<img src="'.base_url().'qrcode/'.$data['kodecetak'].'.png"/>';
         // echo($datacetak);
@@ -85,9 +85,9 @@ class Pdf extends CI_Controller {
             $judul2 = "DINAS PENDIDIKAN";
             date_default_timezone_set('Asia/Jakarta');
             $judul3 = "Jl. Pahlawan No. 4, Sidoarjo, Telp. 031-8921219, 031-8940921";
-            $path="images/logo-sidoarjo1.png";
-         $pdf->addJpegFromFile($path,30,$pdf->y-$posY-55);
-        $pdf->addJpegFromFile("qrcode/coba.jpg", $x+$val3, $pdf->y-$posY-$y);
+            $path="images/logo-sidoarjo1.jpg";
+            $pdf->addJpegFromFile($path,30,$pdf->y-$posY-55);
+        //$pdf->addJpegFromFile("qrcode/coba.jpg", $x+$val3, $pdf->y-$posY-$y);
             $pdf->addText(150, $pdf->y-$posY-9, 15, $judul1);
             $pdf->addText(215, $pdf->y-$posY-25, 16, $judul2);
             $pdf->addText(178, $pdf->y-$posY-35, 8, $judul3);
@@ -96,7 +96,7 @@ class Pdf extends CI_Controller {
             $pdf->ezTable($statement);
             $pdf->addText(480, $pdf->y-$posY-20, 12, $statement);
             //510
-            $pdf->addText(500, $pdf->y-$posY+5, 9, $data['kodecetak']);
+            $pdf->addText(430, $pdf->y-$posY+5, 9, $data['kodecetak']);
             $pdf->addText(150, $pdf->y-$posY-60, 14, "BUKTI PENDAFTARAN PESERTA DIDIK BARU");
             //$pdf->addText(230, $pdf->y-$posY-70, 10, strtoupper($data['sekolah'][$data['ID_SEKOLAH']]->NAMA_SEKOLAH));
                         

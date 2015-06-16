@@ -10,6 +10,7 @@
                     ?>
                     <!-- <p style="background-color:#C4EFBF; border:1px solid #66CE5B; display:block; text-align:center; margin:14px 0 14px 0; padding:12px 10px 12px 10px;">Data peserta lulus seleksi dapat diunduh dihalaman utama dengan login terlebih dahulu menggunakan user dan password yang digunakan untuk input data</p> -->
                     <p style="background-color:#C4EFBF; border:1px solid #66CE5B; display:block; text-align:center; margin:14px 0 14px 0; padding:12px 10px 12px 10px;">Selamat Datang Tim Entry Data <b>PPDB Sidoarjo 2015</b>, <?php echo date("d"); ?> Juni  <?php echo date("Y"); ?></p>
+		<h3 style="background-color:#C4EFBF; border:1px solid #66CE5B; display:block; text-align:center; margin:14px 0 14px 0; padding:12px 10px 12px 10px;">Akses Login ke Sistem baru dibuka Tanggal 16 Juni 2015 Pukul 08:00</h3>
                 </td>
             </tr>
             <tr>

@@ -988,9 +988,8 @@ $("#pilih2").change(function(){ //change pilih2
         bind = document.getElementById('nilai_bind2').value;
         ipa = document.getElementById('nilai_ipa2').value;
         mat = document.getElementById('nilai_mat2').value;
-
         if(document.getElementById('alasan').value!=''){
-            if(bind>10 || ipa>10 || mat>10) window.alert("Format nilai yang anda masukkan salah");
+            if(bind>10 || bind<0 || ipa>10 || ipa<0 || mat<0 || mat>10) window.alert("Format nilai yang anda masukkan salah");
             else{
                 document.getElementById('alasan').disabled='disabled';
                 document.getElementById('nilai_bind2').disabled='disabled';
