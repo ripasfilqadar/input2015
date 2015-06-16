@@ -669,13 +669,13 @@ class Daftar extends CI_Controller {
 //            }
  	    
                 $data = array('pendaftar' => $pendaftar);
-                $this->session->set_userdata($data);
-<<<<<<< HEAD
+               $this->session->set_userdata($data);
+//<<<<<<< HEAD
 
   //         print_r($this->session->userdata('pendaftar'));
-=======
+//=======
                  // print_r($this->session->userdata('pendaftar'));
->>>>>>> 2b442198c9162ef41157a2b9fbe28ad705d78da3
+//>>>>>>> 2b442198c9162ef41157a2b9fbe28ad705d78da3
                 redirect('daftar/'.$this->uri->segment(2).'/3');
             }
             

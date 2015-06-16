@@ -5,11 +5,11 @@ class Pdf extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('session');
-<<<<<<< HEAD
+//<<<<<<< HEAD
         // $this->load->library('ciqrcode');
-=======
+//=======
         //$this->load->library('ciqrcode');
->>>>>>> 71163a9daea09fc3e2ce53f8bae7ffac6b6c636a
+//>>>>>>> 71163a9daea09fc3e2ce53f8bae7ffac6b6c636a
         $this->load->helper('url');
         $this->load->helper('mydb');
         
@@ -54,21 +54,21 @@ class Pdf extends CI_Controller {
         // $data['kodecetak'] = substr(md5(base64_encode($datacetak)),-10);
         $data['kodecetak'] = substr(md5(base64_encode($datacetak)),0);
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
         // $params['data'] = $data['kodecetak'];
         // $params['level'] = 'H';
         // $params['size'] = 3;
         // // $params['savename'] = FCPATH.$data['kodecetak'].".jpg";
         // $params['savename'] = FCPATH.'qrcode/'.$data['kodecetak'].".png";
         // $this->ciqrcode->generate($params);
-=======
+//=======
         $params['data'] = $data['kodecetak'];
         $params['level'] = 'H';
         $params['size'] = 3;
         // $params['savename'] = FCPATH.$data['kodecetak'].".jpg";
         $params['savename'] = FCPATH.'qrcode/'.$data['kodecetak'].".png";
         //$this->ciqrcode->generate($params);
->>>>>>> 71163a9daea09fc3e2ce53f8bae7ffac6b6c636a
+//>>>>>>> 71163a9daea09fc3e2ce53f8bae7ffac6b6c636a
         // echo base_url().$data['kodecetak'];
         // echo '<img src="'.base_url().'qrcode/'.$data['kodecetak'].'.png"/>';
         // echo($datacetak);
