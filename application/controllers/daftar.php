@@ -634,11 +634,11 @@ class Daftar extends CI_Controller {
                 $pendaftar['AKHIR_BIND'] =$pendaftar['UAN_BIND']*0.3+$pendaftar['RAP_BIND']*0.7;
                 $pendaftar['AKHIR_MAT'] = $pendaftar['UAN_MAT']*0.3+$pendaftar['RAP_MAT']*0.7;
                 $pendaftar['AKHIR_IPA'] = $pendaftar['UAN_IPA']*0.3+$pendaftar['RAP_IPA']*0.7;
-                $pendaftar['NAKHIR_ASLI'] = $pendaftar['NUN_ASLI']*0.3 + $pendaftar['NRAP_ASLI']*0.7;
                 $pendaftar['NUN_ASLI']=$pendaftar['UAN_BIND']+$pendaftar['UAN_MAT']+$pendaftar['UAN_IPA'];
-                    
-                if (!$pendaftar['NAKHIR_ASLI']) $pendaftar['NAKHIR_ASLI'] = $pendaftar['AKHIR_BIND']+$pendaftar['AKHIR_MAT']+$pendaftar['AKHIR_IPA'];                     
-            }
+                $pendaftar['NAKHIR_ASLI'] = $pendaftar['NUN_ASLI']*0.3 + $pendaftar['NRAP_ASLI']*0.7;
+
+                $pendaftar['NAKHIR_ASLI'] = $pendaftar['NUN_ASLI']*0.3 + $pendaftar['NRAP_ASLI']*0.7;
+                if (!$pendaftar['NAKHIR_ASLI']) $pendaftar['NAKHIR_ASLI'] =  $pendaftar['NUN_ASLI']*0.3 + $pendaftar['NRAP_ASLI']*0.7;           }
             
             if ($data['tingkatan'] != 'smp') {
                 $pendaftar['UAN_BING'] = $this->input->post('nilai_bing'.$endname);
@@ -654,7 +654,7 @@ class Daftar extends CI_Controller {
            // if ($data['tingkatan'] != 'smk') {
             if ($data['tingkatan'] == 'smp')
             {
-                $pendaftar['NILAI_AKHIR'] = $pendaftar['NUN_ASLI'];
+                $pendaftar['NILAI_AKHIR'] = $pendaftar['NUN_ASLI']*0.3 + $pendaftar['NRAP_ASLI']*0.7;
 
                 
             }
@@ -667,10 +667,11 @@ class Daftar extends CI_Controller {
 //                $pendaftar['NTK'] = $this->input->post('ntk');
 //                $pendaftar['NILAI_AKHIR'] = (($pendaftar['NUN_ASLI']*2) + ($pendaftar['NTMB']*2) + $pendaftar['NTK'])/5;
 //            }
-            
+ 	    
                 $data = array('pendaftar' => $pendaftar);
                 $this->session->set_userdata($data);
-           print_r($this->session->userdata('pendaftar'));
+
+  //         print_r($this->session->userdata('pendaftar'));
                 redirect('daftar/'.$this->uri->segment(2).'/3');
             }
             
@@ -727,6 +728,7 @@ class Daftar extends CI_Controller {
             // if($data['tingkatan']=='smp')$data['_nilai'] = 'Nilai Akhir:';
             if($data['tingkatan']=='smp')$data['_nilaiakhir'] = 'Nilai Akhir:';
             $this->load->view('daftar/konfirmasi', $data);
+//	print_r($data);
         }
     }
     
