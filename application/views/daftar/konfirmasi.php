@@ -175,7 +175,7 @@
                                                         <td><?php echo $AKHIR_BIND; ?></td>
                                                         <td><?php echo $AKHIR_MAT; ?></td>
                                                         <td><?php echo $AKHIR_IPA; ?></td>
-                                                        <td><?php echo $NAKHIR_ASLI; ?></td>
+                                                        <td><?php echo $NILAI_AKHIR; ?></td>
                                                         <!-- <td><?php echo $UAN_BIND; ?></td>
                                                         <td><?php echo $UAN_MAT; ?></td>
                                                         <td><?php echo $UAN_IPA; ?></td>

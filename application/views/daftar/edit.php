@@ -530,7 +530,7 @@
                                     </tr>
                                     <?php if ($tingkatan == 'smp') { ?>  
                                     <tr>
-                                        <td class="tddfkiri" valign="top"><label><?php if($tingkatan=='smp')echo "Nilai Sekolah:<p style='font-size:10px; color:red;'>( Nilai Desimal Dipishakan Dengan Tanda Titik, BUKAN Koma)</p>"; else echo $_nilaiRAP ?></label> </td>
+                                        <td class="tddfkiri" valign="top"><label><?php if($tingkatan=='smp')echo "Rata-Rata Nilai Rapor:<p style='font-size:10px; color:red;'>( Nilai Desimal Dipishakan Dengan Tanda Titik, BUKAN Koma)</p>"; else echo $_nilaiRAP ?></label> </td>
                                         <td class="tddfkanan">
                                             <table id="NILAI_RAP" width="300" border="1" cellspacing="0" cellpadding="0">
                                                 <thead align="center">
@@ -990,13 +990,10 @@ $("#pilih2").change(function(){ //change pilih2
         bind = document.getElementById('nilai_bind2').value;
         ipa = document.getElementById('nilai_ipa2').value;
         mat = document.getElementById('nilai_mat2').value;
+
         if(document.getElementById('alasan').value!=''){
-<<<<<<< HEAD
             if(bind>10 || bind<0 || ipa>10 || ipa<0 || mat>10 || mat<0) 
                 window.alert("Format nilai yang anda masukkan salah");
-=======
-            if(bind>10 || bind<0 || ipa>10 || ipa<0 || mat<0 || mat>10) window.alert("Format nilai yang anda masukkan salah");
->>>>>>> 71163a9daea09fc3e2ce53f8bae7ffac6b6c636a
             else{
                 document.getElementById('alasan').disabled='';
                 document.getElementById('nilai_bind2').disabled='disabled';
@@ -1031,13 +1028,13 @@ $("#pilih2").change(function(){ //change pilih2
         mat2=document.getElementById('nilai_mat2').value;
         document.getElementById('nilai_mat2_hidden').value=mat2;
         
-        document.getElementById('nrap_asli').value=parseFloat(bind2)+parseFloat(ipa2)+parseFloat(mat2);
-
+        akhirs = parseFloat(bind2)+parseFloat(ipa2)+parseFloat(mat2);
+        document.getElementById('nrap_asli').value=(Math.round(parseFloat(akhirs)*100)/100).toFixed(2);      
         akhir2 = document.getElementById('nrap_asli').value
 
-        document.getElementById('nilai_bind3').value=parseFloat(bind2)*0.7 + parseFloat(bind)*0.3 ;
-        document.getElementById('nilai_mat3').value=parseFloat(mat2)*0.7 + parseFloat(mat)*0.3;
-        document.getElementById('nilai_ipa3').value=parseFloat(ipa2)*0.7 + parseFloat(ipa)*0.3;
-        document.getElementById('nakhir_asli').value=parseFloat(akhir2)*0.7 + parseFloat(akhir)*0.3;
+        document.getElementById('nilai_bind3').value=(Math.round((parseFloat(bind2)*0.7 + parseFloat(bind)*0.3)*100)/100).toFixed(2);
+        document.getElementById('nilai_mat3').value=(Math.round((parseFloat(mat2)*0.7 + parseFloat(mat)*0.3)*100)/100).toFixed(2);
+        document.getElementById('nilai_ipa3').value=(Math.round((parseFloat(ipa2)*0.7 + parseFloat(ipa)*0.3)*100)/100).toFixed(2);
+        document.getElementById('nakhir_asli').value=(Math.round((parseFloat(akhir2)*0.7 + parseFloat(akhir)*0.3)*100)/100).toFixed(2);
     }
 </script>
