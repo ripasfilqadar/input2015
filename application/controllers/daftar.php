@@ -553,6 +553,8 @@ class Daftar extends CI_Controller {
             }
             
             if ($this->terdaftar_terakhir != null) $data['terdaftar_terakhir'] = $this->terdaftar_terakhir;
+	
+print_r($data);	
             if ($this->uri->segment(2) == 'baru' || isset($data['pendaftar'])) 
             {
                 

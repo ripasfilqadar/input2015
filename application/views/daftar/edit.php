@@ -557,10 +557,15 @@
                                                 </tbody>
                                             </table>
                                         </td>
+				<?php 
+				if ($this->uri->segment(2) == 'baru'){ ?>
                                         <td><input type='button' onclick="editus()"  style="height:40px;" value="Perubahan Nilai"></td>
-                                        <input id="flag" name="flag" type="hidden" value="0">
-                                    </tr>
-                                    <tr style="visibility:hidden" id="perubahan">
+                                        <input id="flag" name="flag" type="hidden" value="0"><?php } ?>
+                                    </tr> 
+				<?php  
+				if ($this->uri->segment(2) == 'baru'){ ?>
+
+			                                    <tr style="visibility:hidden" id="perubahan">
                                         <td id="alasanlabel" class="tddfkiri" valign="top"><label>Alasan Perubahan</label> </td>
                                         <td><input name="alasan" id="alasan" style="height:40px; width:340px" value="<?php if(isset($pendaftar->ALASAN)) echo $pendaftar->ALASAN;  ?>" ></td>
                                         <td><input type="button"  onclick="saveus()" id="tombolubah" style="visibility:hidden;height:40px;" value="Simpan Nilai"></td>
@@ -570,7 +575,7 @@
                                         <td></td>
                                         <td><input type="button" onclick="cancelus()"  id="cancelus1" style="visibility:hidden;height:40px;" value="Batalkan Perubahan"></td>
                                     </tr>
-                                    <tr>
+                                    <tr> <?php } ?>
                                         <td class="tddfkiri" valign="top"><label>Nilai Akhir</label> </td>
                                         <td class="tddfkanan">
                                             <table id="NILAI_US" width="300" border="1" cellspacing="0" cellpadding="0">

@@ -346,7 +346,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td class="tddfkiri" valign="top"><label><?php if($tingkatan=='smp')echo "Nilai Sekolah"; else echo $_nilai ?></label> </td>
+                                        <td class="tddfkiri" valign="top"><label><?php if($tingkatan=='smp')echo "Nilai UN"; else echo $_nilai ?></label> </td>
                                         <td class="tddfkanan">
                                             <table id="NILAI_UN" width="300" border="1" cellspacing="0" cellpadding="0">
                                                 <thead align="center">
@@ -360,18 +360,71 @@
                                                 </thead>
                                                 <tbody align="center" style="background-color: #ffffff">
                                                     <tr>
-                                                        <td><input id="nilai_bind" name="nilai_bind" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_bind'); ?>" /></td>
-                                                        <td><input id="nilai_mat" name="nilai_mat" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_mat'); ?>" /></td>
-                                                        <td><input id="nilai_ipa" name="nilai_ipa" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_ipa'); ?>" /></td>
+                                                        <td><input id="nilai_bind" name="nilai_bind" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_bind'); ?>" /></td>
+                                                        <td><input id="nilai_mat" name="nilai_mat" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_mat'); ?>" /></td>
+                                                        <td><input id="nilai_ipa" name="nilai_ipa" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_ipa'); ?>" /></td>
                                                         <?php if ($tingkatan != 'smp') { ?> 
                                                         <td><input id="nilai_bing" name="nilai_bing" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_bing'); ?>" /></td>
                                                         <?php } ?> 
-                                                        <?php if ($this->uri->segment(2) == 'baru') { ?><td><input id="nun_asli" name="nun_asli" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nun_asli'); ?>" /></td><?php } ?> 
+                                                        <td><input id="nun_asli" name="nun_asli" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nun_asli'); ?>" disabled="disabled" <?php echo ($this->uri->segment(2) == 'lama') ? ' disabled="disabled"' : ''; ?> /></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </td>
                                     </tr>
+                                    <?php if ($tingkatan == 'smp') { ?>  
+                                    <tr>
+                                        <td class="tddfkiri" valign="top"><label>Rata-Rata Nilai Rapor:</label> </td>
+                                        <td class="tddfkanan">
+                                            <table id="NILAI_RAP" width="300" border="1" cellspacing="0" cellpadding="0">
+                                                <thead align="center">
+                                                    <th>B. IND</th>
+                                                    <th>MAT</th>
+                                                    <th>IPA</th>
+                                                    <?php if ($tingkatan != 'smp') { ?> 
+                                                    <th>B. ING</th>
+                                                    <?php } ?> 
+                                                    <?php if ($this->uri->segment(2) == 'baru') { ?><th><?php echo ($this->uri->segment(2) == 'lalu') ? 'NUN' : 'Nilai Akhir'; ?></th><?php } ?> 
+                                                </thead>
+                                                <tbody align="center" style="background-color: #ffffff">
+                                                    <tr>
+                                                        <td><input id="nilai_bind2" name="nilai_bind2" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_bind2'); ?>" /></td>
+                                                        <td><input id="nilai_mat2" name="nilai_mat2" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_mat2'); ?>" /></td>
+                                                        <td><input id="nilai_ipa2" name="nilai_ipa2" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_ipa2'); ?>" /></td>
+                                                        <td><input id="nrap_asli" name="nrap_asli" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nrap_asli'); ?>" disabled="disabled" <?php echo ($this->uri->segment(2) == 'lama') ? ' disabled="disabled"' : ''; ?> /></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tddfkiri" valign="top"><label>Nilai Akhir</label> </td>
+                                        <td class="tddfkanan">
+                                            <table id="NILAI_US" width="300" border="1" cellspacing="0" cellpadding="0">
+                                                <thead align="center">
+                                                    <th>B. IND</th>
+                                                    <th>MAT</th>
+                                                    <th>IPA</th>
+                                                    <th>Nilai Akhir</th>
+                                                </thead>
+                                                <tbody align="center" style="background-color: #ffffff">
+                                                    <tr>
+                                                        <td>
+                                                            <input id="nilai_bind3" name="nilai_bind3" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_bind3'); ?>" disabled="disabled" />
+                                                        </td>
+                                                        <td>
+                                                            <input id="nilai_mat3" name="nilai_mat3" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_mat3'); ?>" disabled="disabled" />
+                                                        </td>
+                                                        <td><input id="nilai_ipa3" name="nilai_ipa3" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nilai_ipa3'); ?>" disabled="disabled"/></td>
+                                                
+                                                        <td><input id="nakhir_asli" name="nakhir_asli" onchange="sum()" size="7" type="text" style="margin-top: 5px;" value="<?php echo set_value('nakhir_asli'); ?>" disabled="disabled" <?php echo ($this->uri->segment(2) == 'lama') ? ' disabled="disabled"' : ''; ?> /></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <input id="flag" name="flag" type="hidden" value="0">
+                                    <?php } ?>
                                     <?php if (false) { ?> 
                                     <tr>
                                         <td class="tddfkiri" valign="top"><label><?php $_nilai2 ?></label> </td>
@@ -691,3 +744,31 @@ $("#pilih2").change(function(){ //change pilih2
 });
 </script>
 <?php $this->load->view('base/footer')?>
+
+<script type="text/javascript">
+    function sum() {
+
+        bind = document.getElementById('nilai_bind').value;
+        ipa = document.getElementById('nilai_ipa').value;
+        mat = document.getElementById('nilai_mat').value;
+        akhir = parseFloat(bind)+parseFloat(ipa)+parseFloat(mat);
+
+        document.getElementById('nun_asli').value=(Math.round(parseFloat(akhir)*100)/100).toFixed(2);
+
+        bind2=document.getElementById('nilai_bind2').value;
+        // document.getElementById('nilai_bind2_hidden').value=bind2;
+        ipa2=document.getElementById('nilai_ipa2').value;
+        // document.getElementById('nilai_ipa2_hidden').value=ipa2;
+        mat2=document.getElementById('nilai_mat2').value;
+        // document.getElementById('nilai_mat2_hidden').value=mat2;
+        akhirs = parseFloat(bind2)+parseFloat(ipa2)+parseFloat(mat2);
+        
+        document.getElementById('nrap_asli').value=(Math.round(parseFloat(akhirs)*100)/100).toFixed(2);    
+        akhir2 = document.getElementById('nrap_asli').value
+
+        document.getElementById('nilai_bind3').value=(Math.round((parseFloat(bind2)*0.7 + parseFloat(bind)*0.3)*100)/100).toFixed(2);
+        document.getElementById('nilai_mat3').value=(Math.round((parseFloat(mat2)*0.7 + parseFloat(mat)*0.3)*100)/100).toFixed(2);
+        document.getElementById('nilai_ipa3').value=(Math.round((parseFloat(ipa2)*0.7 + parseFloat(ipa)*0.3)*100)/100).toFixed(2);
+        document.getElementById('nakhir_asli').value=(Math.round((parseFloat(akhir2)*0.7 + parseFloat(akhir)*0.3)*100)/100).toFixed(2);
+    }
+</script>
