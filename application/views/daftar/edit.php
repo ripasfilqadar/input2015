@@ -425,7 +425,7 @@
                                             <?php } ?>
                                         </td>
                                     </tr>
-                                    <?php if ($this->session->userdata('HAK') == 'inputrekom') { ?> 
+                                    <?php if ($this->session->userdata('HAK') != 'inputrekom') { ?> 
                                     <tr>
                                         <td class="tddfkiri"><label><?php echo $_domisili; ?></label> </td>
                                         <td class="tddfkanan"><input id="domisili" name="domisili" size="30" class="button" value="<?php echo $pendaftar->DOMISILI; ?>" <?php //echo ($tingkatan != 'smk') ? ' disabled="disabled"' : ''; ?>/></td>
