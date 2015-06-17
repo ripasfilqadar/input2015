@@ -51,7 +51,7 @@ function tes2() {phpinfo();}
             }
             $tingkatan = ($this->tingkatan_sekolah == '1') ? 'smp' : (($this->tingkatan_sekolah == '2') ? 'sma' : (($this->tingkatan_sekolah == '3') ? 'smk' : ''));
             $this->m_pendaftar->set_tingkatan($tingkatan);
-            $pendaftar = $this->m_pendaftar->read('PID, NO_UJIAN, NAMA,NAKHIR_ASLI, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2', array('WAKTU_DAFTAR' => $tanggal), array('ID_SEKOLAH' => $this->id_sekolah), 'LOG_DAFTAR ASC')->result_array();
+            $pendaftar = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA,NAKHIR_ASLI, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2', array('WAKTU_DAFTAR' => $tanggal), array('ID_SEKOLAH' => $this->id_sekolah), 'LOG_DAFTAR ASC')->result_array();
             
             $i = 0;
             foreach ($pendaftar as $key => $val) {
@@ -62,7 +62,7 @@ function tes2() {phpinfo();}
             }
             if ($tingkatan != 'smp') {
                 $this->m_pendaftar->set_tingkatan(($tingkatan == 'sma') ? 'smk' : 'sma');
-                $pendaftar2 = $this->m_pendaftar->read('PID, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2', array('WAKTU_DAFTAR' => $tanggal), array('ID_SEKOLAH' => $this->id_sekolah), 'LOG_DAFTAR ASC')->result_array();
+                $pendaftar2 = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2', array('WAKTU_DAFTAR' => $tanggal), array('ID_SEKOLAH' => $this->id_sekolah), 'LOG_DAFTAR ASC')->result_array();
                 
                 foreach ($pendaftar2 as $key => $val) {
                     $pendaftar2[$key]['NO'] = ++$i;
@@ -109,7 +109,7 @@ function tes2() {phpinfo();}
             $pdfku->addInfo('Title','Hasil Rekapitulasi');
             $pdfku->addInfo('Author','PPDB HELPER');
             $pdfku->addInfo('Application','PPDB Online Kabupaten Sidoarjo');
-            $pdfku->ezSetCmMargins("4","2","3","2");
+            $pdfku->ezSetCmMargins("3","2","3","2");
 
             $sekolah = $this->m_sekolah->read()->result();
             $data['sekolah'] = array();
@@ -138,8 +138,8 @@ function tes2() {phpinfo();}
             else
                 $where['JALUR_DAFTAR'] = 1;
 	    if ($tingkatan=='smp')
-            $pendaftar = $this->m_pendaftar->read('PID, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2, NAKHIR_ASLI', $where, $where_escaped, 'NAMA ASC')->result_array();
-            else  $pendaftar = $this->m_pendaftar->read('PID, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2,NILAI_AKHIR', $where, $where_escaped, 'NAMA ASC')->result_array();
+            $pendaftar = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2, NAKHIR_ASLI', $where, $where_escaped, 'NAMA ASC')->result_array();
+            else  $pendaftar = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2,NILAI_AKHIR', $where, $where_escaped, 'NAMA ASC')->result_array();
 
             HeaderFooter($pdfku, $nama_sekolah, $pendaftar);
 
@@ -154,7 +154,7 @@ function tes2() {phpinfo();}
                 $pendaftar[$key]['NO'] = ++$i;
                 $pendaftar[$key]['JALUR_DAFTAR'] = ($pendaftar[$key]['JALUR_DAFTAR'] == '1') ? 'REGULER' : (($pendaftar[$key]['JALUR_DAFTAR'] == '0') ? 'TAHUN LALU' : 'REKOMENDASI');
                 if($val['PILIH1'] < 7000 ) $pendaftar[$key]['PILIH1'] = $data['sekolah'][(int)$val['PILIH1']]->NAMA_SEKOLAH;
-		else $pendaftar[$key]['PILIH1'] = $data['sekolah'][(int)$val['PILIH1']]->NAMA_SEKOLAH.' '.$data['sekolah'][(int)$val['PILIH1']]->JURUSAN;
+		        else $pendaftar[$key]['PILIH1'] = $data['sekolah'][(int)$val['PILIH1']]->NAMA_SEKOLAH.' '.$data['sekolah'][(int)$val['PILIH1']]->JURUSAN;
                 $pendaftar[$key]['PILIH2'] = ($val['PILIH2']) ? ($val['PILIH2']>7000 ? $data['sekolah'][(int)$val['PILIH2']]->JURUSAN : $data['sekolah'][(int)$val['PILIH2']]->NAMA_SEKOLAH) : '';
             
                 if($val['PILIH2'] == '') $pendaftar[$key]['PILIH2'] = '-';
@@ -165,6 +165,7 @@ if ($tingkatan=='smp')
             array
             (
                 'NO'=>'NO.',
+                'NO_PENDAFTARAN' => 'NO. PENDAFTARAN',
                 'NO_UJIAN'=>'NO. UJIAN',
                 'NAMA'=>' NAMA',
                 'JALUR_DAFTAR'=>'JALUR DAFTAR',
@@ -180,6 +181,7 @@ if ($tingkatan=='smp')
             array
             (
                 'NO'=>'NO.',
+                'NO_PENDAFTARAN' => 'NO. PENDAFTARAN',
                 'NO_UJIAN'=>'NO. UJIAN',
                 'NAMA'=>' NAMA',
                 'JALUR_DAFTAR'=>'JALUR DAFTAR',
@@ -197,52 +199,57 @@ if ($tingkatan=='smp')
             (
                 'showHeadings'=>1,'shaded'=>0,'xPos'=>'center','xOrientation'=>'center','fontSize' => 6,
                 'cols'=>array
-                (
+                (//35
                     'NO'=>array
                     (
                         'justification'=>'center',
-                                        'width'=>'25'
+                        'width'=>'25'
+                    ),
+                    'NO_PENDAFTARAN'=>array
+                    (
+                        'justification'=>'center',
+                        'width'=>'35'
                     ),
                     'NO_UJIAN'=>array
                     (
                         'justification'=>'center',
-                                        'width'=>'60'
+                        'width'=>'60'
                     ),
                     'NAMA'=>array
                     (
                         'justification'=>'justify',
-                                        'width'=>'100'
+                        'width'=>'100'
                     ),
                     'JALUR_DAFTAR'=>array
                     (
                         'justification'=>'justify',
-                    'width'=>'55'
+                        'width'=>'50'
                     ),
                     'USER_FISIK'=>array
                     (
                         'justification'=>'center',
-                    'width'=>'40'
+                        'width'=>'40'
                     ),
                     'LOG_DAFTAR'=>array
                     (
                         'justification'=>'center',
-                                        'width'=>'60'
+                        'width'=>'50'
                     ),
                     'PILIH1'=>array
                     (
                         'justification'=>'center',
-                                        'width'=>'80'
+                        'width'=>'80'
                     ),
                     'PILIH2'=>array
                     (
                         'justification'=>'center',
-                                        'width'=>'80'
+                        'width'=>'80'
                     )
                     ,
                     'NAKHIR_ASLI'=>array
                     (
                         'justification'=>'center',
-                                        'width'=>'50'
+                        'width'=>'30'
                     )
                 )
             );
@@ -261,6 +268,11 @@ if ($tingkatan=='smp')
                         'justification'=>'center',
                                         'width'=>'25'
                     ),
+                    'NO_PENDAFTARAN'=>array
+                    (
+                        'justification'=>'center',
+                        'width'=>'35'
+                    ),
                     'NO_UJIAN'=>array
                     (
                         'justification'=>'center',
@@ -274,7 +286,7 @@ if ($tingkatan=='smp')
                     'JALUR_DAFTAR'=>array
                     (
                         'justification'=>'justify',
-                    'width'=>'55'
+                    'width'=>'50'
                     ),
                     'USER_FISIK'=>array
                     (
@@ -284,7 +296,7 @@ if ($tingkatan=='smp')
                     'LOG_DAFTAR'=>array
                     (
                         'justification'=>'center',
-                                        'width'=>'60'
+                                        'width'=>'50'
                     ),
                     'PILIH1'=>array
                     (
@@ -300,7 +312,7 @@ if ($tingkatan=='smp')
                    'NILAI_AKHIR'=>array
                     (
                         'justification'=>'center',
-                                        'width'=>'50'
+                                        'width'=>'30'
                     )
                 )
             );
