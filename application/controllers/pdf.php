@@ -50,7 +50,7 @@ class Pdf extends CI_Controller {
             }
         }
 
-        $datacetak = "ppdbsda".$tingkatan.$no_un."p1".$data['PILIH1']."p2".$data['PILIH2']."bismillah2015";
+        $datacetak = "ppdbsda".$tingkatan.$no_un."p1".$data['PILIH1']."p2".$data['PILIH2']."2015YunusRipasRoyyanPur";
         // $data['kodecetak'] = substr(md5(base64_encode($datacetak)),-10);
         $data['kodecetak'] = substr(md5(base64_encode($datacetak)),0);
 
@@ -141,7 +141,9 @@ class Pdf extends CI_Controller {
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-32, 8, "TEMPAT, TGL LAHIR");
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-40, 8, "ALAMAT");
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-48, 8, "KOTA/KAB (DOMISILI)");
-            $pdf->addText($x+$kiri, $pdf->y-$posY-$y-56, 8, "NO. KK");
+            if ($this->hak == 'inputrekom') {
+                $pdf->addText($x+$kiri, $pdf->y-$posY-$y-56, 8, "NO. KK");
+            }
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-64, 8, "NO. TELEPON");
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-72, 8, "NAMA ORANG TUA");
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-80, 8, "ASAL SEKOLAH");
@@ -156,7 +158,9 @@ class Pdf extends CI_Controller {
             $pdf->addText($x+$val, $pdf->y-$posY-$y-32, 8, ": ".strtoupper($data['TMP_LAHIR']).", ".$data['TGL_LAHIR']);
             $pdf->addText($x+$val, $pdf->y-$posY-$y-40, 8, ": ".$data['ALAMAT']);
             $pdf->addText($x+$val, $pdf->y-$posY-$y-48, 8, ": ".$data['KOTA']);
-            $pdf->addText($x+$val, $pdf->y-$posY-$y-56, 8, ": ".$data['DOMISILI']);
+            if ($this->hak == 'inputrekom') {
+                $pdf->addText($x+$val, $pdf->y-$posY-$y-56, 8, ": ".$data['DOMISILI']);
+            }
             $pdf->addText($x+$val, $pdf->y-$posY-$y-64, 8, ": ".$data['NO_TELP']);
             $pdf->addText($x+$val, $pdf->y-$posY-$y-72, 8, ": ".$data['NAMA_ORTU']);
             $pdf->addText($x+$val, $pdf->y-$posY-$y-80, 8, ": ".$data['ASAL_SEKOLAH']);
@@ -306,7 +310,7 @@ class Pdf extends CI_Controller {
                 }
         }
         
-        $datacetak = "ppdbsda".$tingkatan.$no_un."p1".$data['PILIH1']."p2".$data['PILIH2']."bismillah2013";
+        $datacetak = "ppdbsda".$tingkatan.$no_un."p1".$data['PILIH1']."p2".$data['PILIH2']."2015YunusRipasRoyyanPur";
         // $data['kodecetak'] = substr(md5(base64_encode($datacetak)),-10);
         $data['kodecetak'] = substr(md5(base64_encode($datacetak)),0);
         

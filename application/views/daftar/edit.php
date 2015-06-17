@@ -49,6 +49,23 @@
         validator_un.setMessage('max_length', '%s harus berisi %s karakter.');
         validator_un.setMessage('numeric', '%s harus berisi karakter angka.');
         
+        // var validator_nopend = new FormValidator(
+        //     'form_pendaftar',
+        //     [{
+        //         name: 'NO_PENDAFTARAN',
+        //         display: 'Nomor Pendaftaran',
+        //         rules: 'required|min_length['+4+']|numeric'
+        //     }],
+        //     function(errors, events) {
+        //         if (errors.length > 0)
+        //             document.getElementById('error').innerHTML = '<p class="error">'+errors.join('<br />')+'</p>';
+        //     }
+        // );
+        // validator_nopend.setMessage('required', '%s harus diisi.');
+        // validator_nopend.setMessage('min_length', '%s harus berisi %s karakter.');
+        // validator_nopend.setMessage('max_length', '%s harus berisi %s karakter.');
+        // validator_nopend.setMessage('numeric', '%s harus berisi karakter angka.');
+
         <?php if (isset($pendaftar)) { ?> 
         
         var validator_pendaftar = new FormValidator(
@@ -68,6 +85,11 @@
                 rules: 'required|decimal|callback_greater_than_equals[0]|callback_less_than_equals[10]'
             },
             <?php } ?>
+            {
+                name: 'no_pen',
+                display: 'Nomor Pendaftaran',
+                rules: 'required|min_length[6]|numeric'
+            },
             <?php if ($this->uri->segment(2) != 'baru') { ?>
             {
                 name: 'nama',
@@ -392,7 +414,7 @@
                                                 <?php } ?> 
                                             </select>
                                             <select name="tgl_lahir[]"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?>>
-                                                <?php for ($j = ($tingkatan == 'smp') ? 1997 : 1994, $i = $j; $i <= $j + 5; $i++) { ?> 
+                                                <?php for ($j = ($tingkatan == 'smp') ? 1998 : 1995, $i = $j; $i <= $j + 5; $i++) { ?> 
                                                 <option value="<?php echo $i; ?>"<?php echo (intval($tgl_lahir[2]) == $i) ? ' selected="selected"' : ''; ?>><?php echo $i; ?></option>
                                                 <?php } ?> 
                                             </select>
@@ -425,7 +447,7 @@
                                             <?php } ?>
                                         </td>
                                     </tr>
-                                    <?php if ($this->session->userdata('HAK') != 'inputrekom') { ?> 
+                                    <?php if ($this->session->userdata('HAK') == 'inputrekom') { ?> 
                                     <tr>
                                         <td class="tddfkiri"><label><?php echo $_domisili; ?></label> </td>
                                         <td class="tddfkanan"><input id="domisili" name="domisili" size="30" class="button" value="<?php echo $pendaftar->DOMISILI; ?>" <?php //echo ($tingkatan != 'smk') ? ' disabled="disabled"' : ''; ?>/></td>
