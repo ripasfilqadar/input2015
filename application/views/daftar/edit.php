@@ -557,10 +557,11 @@
                                                 </tbody>
                                             </table>
                                         </td>
+				 <input id="flag" name="flag" type="hidden" value="0">
 				<?php 
 				if ($this->uri->segment(2) == 'baru'){ ?>
                                         <td><input type='button' onclick="editus()"  style="height:40px;" value="Perubahan Nilai"></td>
-                                        <input id="flag" name="flag" type="hidden" value="0"><?php } ?>
+                                       <?php } ?>
                                     </tr> 
 				<?php  
 				if ($this->uri->segment(2) == 'baru'){ ?>
