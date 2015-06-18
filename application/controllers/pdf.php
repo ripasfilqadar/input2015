@@ -141,7 +141,7 @@ class Pdf extends CI_Controller {
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-32, 8, "TEMPAT, TGL LAHIR");
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-40, 8, "ALAMAT");
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-48, 8, "KOTA/KAB (DOMISILI)");
-            if ($this->hak == 'inputrekom') {
+            if ($this->hak == 'inputrekomsmp' || $this->hak == 'inputrekomsma' || $this->hak == 'inputrekomsmk') {
                 $pdf->addText($x+$kiri, $pdf->y-$posY-$y-56, 8, "NO. KK");
             }
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-64, 8, "NO. TELEPON");
@@ -158,7 +158,7 @@ class Pdf extends CI_Controller {
             $pdf->addText($x+$val, $pdf->y-$posY-$y-32, 8, ": ".strtoupper($data['TMP_LAHIR']).", ".$data['TGL_LAHIR']);
             $pdf->addText($x+$val, $pdf->y-$posY-$y-40, 8, ": ".$data['ALAMAT']);
             $pdf->addText($x+$val, $pdf->y-$posY-$y-48, 8, ": ".$data['KOTA']);
-            if ($this->hak == 'inputrekom') {
+            if ($this->hak == 'inputrekomsmp' || $this->hak == 'inputrekomsma' || $this->hak == 'inputrekomsmk') {
                 $pdf->addText($x+$val, $pdf->y-$posY-$y-56, 8, ": ".$data['DOMISILI']);
             }
             $pdf->addText($x+$val, $pdf->y-$posY-$y-64, 8, ": ".$data['NO_TELP']);

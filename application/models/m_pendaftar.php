@@ -103,4 +103,10 @@ class m_pendaftar extends MY_Model {
         $this->tablename = "pendaftar_$this->tingkatan";
         parent::update($data, $data_escaped, $where, $where_escaped);
     }
+     public function cekdaftar($no,$tingkatan)
+    {
+        $query="select * from pendaftar_$tingkatan where NO_PENDAFTARAN='$no'";
+        $query=$this->db->query($query);
+        return $query->result_array();
+    }
 }
