@@ -15,7 +15,12 @@
             <td>
                 <table class="tabeldalambesar" cellpadding="0" cellspacing="0" width="90%">
                     <?php 
-                    // echo  "<div style='background-color:#2ecc71; border:1px solid #66CE5B; display:block; text-align:center;width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px; color:white;'> Data Siswa diterima dapat didownload  <a  href=".base_url()."dataditerima/".str_replace(" ","%20",$this->session->userdata('NAMA_SEKOLAH')).".csv>"."<span style='font-style:italic; font-weight:bold;font-size:16px;'>disini</span> </a> </div>"; ?>
+                    // echo "<div style='background-color:#2ecc71; border:1px solid #66CE5B; display:block; text-align:center;width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px; color:white;'> Data Siswa diterima dapat didownload  <a  href=".base_url()."dataditerima/".str_replace(" ","%20",$this->session->userdata('NAMA_SEKOLAH')).".csv>"."<span style='font-style:italic; font-weight:bold;font-size:16px;'>disini</span> </a> </div>"; ?>
+
+                    <?php
+                        if(substr($tingkatan,0,3)=='smk') 
+                        echo "<div style='background-color:#2ecc71; border:1px solid #66CE5B; display:block; text-align:center;width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px; color:white;'> Form pengisian nilai hasil tes SMK dapat diunduh <a href=".base_url()."format/test.xlsx>". "<span style='font-style:italic; font-weight:bold;font-size:16px;'>disini</span> </a> </div>";?>
+
                     <?php if(substr($tingkatan,0,3)=='smp')echo  "<p style='background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px;'>Petugas Input Data Pendaftaran SMP diwajibkan melakukan pengecekan Nilai Sekolah Bahasa Indonesia, Matematika, dan IPA yang tertera pada SKL/SKHUN dan Rata-Rata Nilai Rapor Bahasa Indonesia, Matematika, dan IPA </p>"; ?>
                     <?php 
                     // if(substr($tingkatan,0,3)=='smp') echo "<img src=".base_url()."images/SKHUN.jpg   "; ?>
