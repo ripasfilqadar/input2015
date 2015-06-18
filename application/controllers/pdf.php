@@ -22,12 +22,12 @@ class Pdf extends CI_Controller {
         $this->nama_sekolah = $this->session->userdata('NAMA_SEKOLAH');
         $this->tingkatan_sekolah = $this->session->userdata('TINGKATAN_SEKOLAH');
         $this->hak = $this->session->userdata('HAK');
-	date_default_timezone_set('Asia/Jakarta');        
+	//date_default_timezone_set('Asia/Jakarta');        
         //$this->_load_terdaftar_terakhir();
     }
     
     public function cetak($tingkatan = '', $no_un = ''){
-	date_default_timezone_set('Asia/Jakarta');               
+	//date_default_timezone_set('Asia/Jakarta');               
         if (!$no_un || !$tingkatan) redirect('');
         
         $this->load->library('cezpdf');
@@ -96,7 +96,7 @@ class Pdf extends CI_Controller {
 
             $judul1 = "PEMERINTAH KABUPATEN SIDOARJO";
             $judul2 = "DINAS PENDIDIKAN";
-            date_default_timezone_set('Asia/Jakarta');
+            //date_default_timezone_set('Asia/Jakarta');
             $judul3 = "Jl. Pahlawan No. 4, Sidoarjo, Telp. 031-8921219, 031-8940921";
             $path="images/logo-sidoarjo1.jpg";
             $pdf->addJpegFromFile($path,30,$pdf->y-$posY-55);
@@ -118,8 +118,8 @@ class Pdf extends CI_Controller {
                 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember','Desember');
             
             $bln = (int)date("n");
-            
-            $pdf->addText(245, $pdf->y-$posY-280, 9, "Sidoarjo, ".date("j")." ".$bulan[$bln-1]." ".date("Y"));
+           $tanggal=getdate(); 
+            $pdf->addText(245, $pdf->y-$posY-280, 9, "Sidoarjo, ".$tanggal['mday']." ".$bulan[$bln-1]." ".date("Y"));
             if($data['tingkatan']=='smp'){
                 $pdf->addText(225, $pdf->y-$posY-290, 9, "Petugas Validator Nilai dan Pilihan");
                 $pdf->addText(234, $pdf->y-$posY-350, 9, "(. . . . . . . . . . . . . . . . . . . . . .)");
@@ -245,7 +245,7 @@ class Pdf extends CI_Controller {
     public function cetak_nkem($tingkatan = '', $jurusan = ''){
         $mulai = $this->input->POST('mulai');
         $akhir = $this->input->POST('akhir');
-        date_default_timezone_set('Asia/Jakarta');
+        //date_default_timezone_set('Asia/Jakarta');
 
 	if ($this->hak != 'admin') {
             if (!$tingkatan || $tingkatan == 'x') {
