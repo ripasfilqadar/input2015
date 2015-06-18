@@ -280,6 +280,9 @@
                                                 echo '<p class="error">'.$this->session->flashdata('error').'</p>';
                                             if (isset($errors) && $errors)
                                                 echo '<p class="error" >'.$errors.'</p>';
+                                            if (!is_null($this->session->userdata('error')))
+                                                echo '<p class="error" >'.$this->session->userdata('error').'</p>';
+                                                
                                             ?>
                                         </td>
                                     </tr>

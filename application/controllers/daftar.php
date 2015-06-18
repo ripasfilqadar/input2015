@@ -554,7 +554,10 @@ class Daftar extends CI_Controller {
             
             if ($this->terdaftar_terakhir != null) $data['terdaftar_terakhir'] = $this->terdaftar_terakhir;
 	
+<<<<<<< HEAD
 //print_r($data);	
+=======
+>>>>>>> 828a95304b2aeb7a8c8b1b65255fc7da080a74ec
             if ($this->uri->segment(2) == 'baru' || isset($data['pendaftar'])) 
             {
                 
@@ -579,6 +582,8 @@ class Daftar extends CI_Controller {
                 $tgl_lahir = $tgl_lahir[2].'-'.$tgl_lahir[1].'-'.$tgl_lahir[0];
             }
             
+            
+
             $pendaftar = array(
                 'NO_PENDAFTARAN' => $this->input->post('no_pen'),
                 'NO_UJIAN' => $data['no_un'],
@@ -669,9 +674,16 @@ class Daftar extends CI_Controller {
 //                $pendaftar['NTK'] = $this->input->post('ntk');
 //                $pendaftar['NILAI_AKHIR'] = (($pendaftar['NUN_ASLI']*2) + ($pendaftar['NTMB']*2) + $pendaftar['NTK'])/5;
 //            }
- 	    
-                $data = array('pendaftar' => $pendaftar);
+ 	      $NO_PENDAFTARAN=$this->input->post('no_pen');
+            $NO_PENDAFTARAN_FLAG=$this->m_pendaftar->cekdaftar($NO_PENDAFTARAN, $data['tingkatan']);
+            $data = array('pendaftar' => $pendaftar);
+            if (!is_null($NO_PENDAFTARAN_FLAG)){
+                $data['error']="NO Pendaftaran Sudah dipakai";    
+            }
+                
                $this->session->set_userdata($data);
+               print_r($data);
+
 //<<<<<<< HEAD
 
   //         print_r($this->session->userdata('pendaftar'));
@@ -686,6 +698,8 @@ class Daftar extends CI_Controller {
     function _step3() {
         
         if (!$this->session->userdata('no_un')) redirect('daftar/'.$this->uri->segment(2).'/1');
+        ($this->session->userdata('error'));
+        if (!is_null($this->session->userdata('error'))) redirect('daftar/'.$this->uri->segment(2).'/2');
         $data = $this->session->userdata('pendaftar');
         // print_r($data);
         $data['_pendaftaran'] = 'Nomor Pendaftaran:';
