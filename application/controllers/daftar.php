@@ -673,12 +673,15 @@ class Daftar extends CI_Controller {
  	      $NO_PENDAFTARAN=$this->input->post('no_pen');
             $NO_PENDAFTARAN_FLAG=$this->m_pendaftar->cekdaftar($NO_PENDAFTARAN, $data['tingkatan']);
             $data = array('pendaftar' => $pendaftar);
-            if (!is_null($NO_PENDAFTARAN_FLAG)){
-                $data['error']="NO Pendaftaran Sudah dipakai";    
+            $this->session->set_userdata($data);
+            if ($NO_PENDAFTARAN_FLAG>0){
+                $this->session->set_flashdata('error','No Pendaftaran sudah dipakai');
+                
+                redirect('daftar/'.$this->uri->segment(2).'/2');   
             }
                 
-               $this->session->set_userdata($data);
-               print_r($data);
+               
+               
 
 //<<<<<<< HEAD
 
@@ -695,7 +698,7 @@ class Daftar extends CI_Controller {
         
         if (!$this->session->userdata('no_un')) redirect('daftar/'.$this->uri->segment(2).'/1');
         ($this->session->userdata('error'));
-        if (!is_null($this->session->userdata('error'))) redirect('daftar/'.$this->uri->segment(2).'/2');
+
         $data = $this->session->userdata('pendaftar');
         // print_r($data);
         $data['_pendaftaran'] = 'Nomor Pendaftaran:';
