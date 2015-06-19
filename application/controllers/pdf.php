@@ -22,12 +22,12 @@ class Pdf extends CI_Controller {
         $this->nama_sekolah = $this->session->userdata('NAMA_SEKOLAH');
         $this->tingkatan_sekolah = $this->session->userdata('TINGKATAN_SEKOLAH');
         $this->hak = $this->session->userdata('HAK');
-	date_default_timezone_set('Asia/Jakarta');        
+//	date_default_timezone_set('Asia/Jakarta');        
         //$this->_load_terdaftar_terakhir();
     }
     
     public function cetak($tingkatan = '', $no_un = ''){
-	date_default_timezone_set('Asia/Jakarta');               
+	//date_default_timezone_set('Asia/Jakarta');               
         if (!$no_un || !$tingkatan) redirect('');
         
         $this->load->library('cezpdf');
@@ -96,7 +96,7 @@ class Pdf extends CI_Controller {
 
             $judul1 = "PEMERINTAH KABUPATEN SIDOARJO";
             $judul2 = "DINAS PENDIDIKAN";
-            date_default_timezone_set('Asia/Jakarta');
+            //date_default_timezone_set('Asia/Jakarta');
             $judul3 = "Jl. Pahlawan No. 4, Sidoarjo, Telp. 031-8921219, 031-8940921";
             $path="images/logo-sidoarjo1.jpg";
             $pdf->addJpegFromFile($path,30,$pdf->y-$posY-55);
@@ -141,7 +141,7 @@ class Pdf extends CI_Controller {
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-32, 8, "TEMPAT, TGL LAHIR");
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-40, 8, "ALAMAT");
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-48, 8, "KOTA/KAB (DOMISILI)");
-            if ($this->hak == 'inputrekomsmp' || $this->hak == 'inputrekomsma' || $this->hak == 'inputrekomsmk' || $this->hak == 'inputrekom) {
+            if ($this->hak == 'inputrekomsmp' || $this->hak == 'inputrekomsma' || $this->hak == 'inputrekomsmk' || $this->hak == 'inputrekom') {
                 $pdf->addText($x+$kiri, $pdf->y-$posY-$y-56, 8, "NO. KK");
             }
             $pdf->addText($x+$kiri, $pdf->y-$posY-$y-64, 8, "NO. TELEPON");
@@ -158,7 +158,7 @@ class Pdf extends CI_Controller {
             $pdf->addText($x+$val, $pdf->y-$posY-$y-32, 8, ": ".strtoupper($data['TMP_LAHIR']).", ".$data['TGL_LAHIR']);
             $pdf->addText($x+$val, $pdf->y-$posY-$y-40, 8, ": ".$data['ALAMAT']);
             $pdf->addText($x+$val, $pdf->y-$posY-$y-48, 8, ": ".$data['KOTA']);
-            if ($this->hak == 'inputrekomsmp' || $this->hak == 'inputrekomsma' || $this->hak == 'inputrekomsmk' || $this->hak == 'inputrekom) {
+            if ($this->hak == 'inputrekomsmp' || $this->hak == 'inputrekomsma' || $this->hak == 'inputrekomsmk' || $this->hak == 'inputrekom') {
                 $pdf->addText($x+$val, $pdf->y-$posY-$y-56, 8, ": ".$data['DOMISILI']);
             }
             $pdf->addText($x+$val, $pdf->y-$posY-$y-64, 8, ": ".$data['NO_TELP']);
@@ -245,7 +245,7 @@ class Pdf extends CI_Controller {
     public function cetak_nkem($tingkatan = '', $jurusan = ''){
         $mulai = $this->input->POST('mulai');
         $akhir = $this->input->POST('akhir');
-        date_default_timezone_set('Asia/Jakarta');
+        //date_default_timezone_set('Asia/Jakarta');
 
 	if ($this->hak != 'admin') {
             if (!$tingkatan || $tingkatan == 'x') {

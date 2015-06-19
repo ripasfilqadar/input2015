@@ -554,10 +554,7 @@ class Daftar extends CI_Controller {
             
             if ($this->terdaftar_terakhir != null) $data['terdaftar_terakhir'] = $this->terdaftar_terakhir;
 	
-<<<<<<< HEAD
 
-=======
->>>>>>> 6fc26f4120b0c11756cba498f4f8daf6efda1b3c
             if ($this->uri->segment(2) == 'baru' || isset($data['pendaftar'])) 
             {
                 
@@ -687,12 +684,6 @@ class Daftar extends CI_Controller {
                
                
 
-//<<<<<<< HEAD
-
-  //         print_r($this->session->userdata('pendaftar'));
-//=======
-                 // print_r($this->session->userdata('pendaftar'));
-//>>>>>>> 2b442198c9162ef41157a2b9fbe28ad705d78da3
                 redirect('daftar/'.$this->uri->segment(2).'/3');
             }
             
