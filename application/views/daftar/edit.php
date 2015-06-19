@@ -276,9 +276,13 @@
                                                 echo '<p class="error">'.$this->session->flashdata('error').'</p>';
                                             if (isset($errors) && $errors)
                                                 echo '<p class="error" >'.$errors.'</p>';
+<<<<<<< HEAD
                                             if (!is_null($this->session->userdata('error')))
                                                 echo '<p class="error" >'.$this->session->userdata('error').'</p>';
 						$this->session->unset_userdata('error');
+=======
+                                            
+>>>>>>> 6fc26f4120b0c11756cba498f4f8daf6efda1b3c
                                                 
                                             ?>
                                         </td>
