@@ -123,12 +123,8 @@
                 name: 'asal_sekolah',
                 display: 'Asal Sekolah',
                 rules: 'required'
-            }, <?php if ($this->session->userdata('HAK') != 'inputrekom') { ?>
-            {
-                name: 'domisili',
-                display: 'Domisili',
-                rules: 'required'
-            }, <?php } ?>{
+            }, 
+	    {
                 name: 'kota_asal_sekolah',
                 display: 'Kota Asal Sekolah',
                 rules: 'required'
@@ -282,6 +278,7 @@
                                                 echo '<p class="error" >'.$errors.'</p>';
                                             if (!is_null($this->session->userdata('error')))
                                                 echo '<p class="error" >'.$this->session->userdata('error').'</p>';
+						$this->session->unset_userdata('error');
                                                 
                                             ?>
                                         </td>
