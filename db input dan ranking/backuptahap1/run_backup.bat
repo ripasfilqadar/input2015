@@ -1,0 +1,1 @@
+mysql -uroot -pP154n6M3r4h inputsda2014 < "BACKUP data pendaftar.sql"
