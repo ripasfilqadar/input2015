@@ -10,9 +10,9 @@ PRESsk = 4
 
 #koneksi ke database
 host = "localhost"
-user = "ranking2014"
-passwd = "54t3P4d4n6Un1"
-db = "rankingsda2014"
+user = "ranking2015"
+passwd = "T4k0kn0R1p45"
+db = "rankingsda2015"
 db_ranking = MySQLdb.connect(host, user, passwd, db)
 
 #variabel yang dibutuhkan

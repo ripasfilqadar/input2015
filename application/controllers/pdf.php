@@ -169,9 +169,9 @@ class Pdf extends CI_Controller {
 	    //if ($data['tingkatan'] != 'smk'){
             	if($data['tingkatan']=='smp'){
                     $pdf->addText($x+$kiri, $pdf->y-$posY-$y-104, 8, "NILAI ");
-                    $pdf->addText($x+$val, $pdf->y-$posY-$y-104, 8, "RAPOR");
-                    $pdf->addText($x+$val+35, $pdf->y-$posY-$y-104, 8, "US");
-                    $pdf->addText($x+$val+70, $pdf->y-$posY-$y-104, 8, "AKHIR");
+                    $pdf->addText($x+$val, $pdf->y-$posY-$y-104, 8, "US");
+                    $pdf->addText($x+$val+35, $pdf->y-$posY-$y-104, 8, "RAPOR");
+                    $pdf->addText($x+$val+70, $pdf->y-$posY-$y-104, 8, "NS");
                 }
             	else $pdf->addText($x+$kiri, $pdf->y-$posY-$y-104, 8, "NILAI AKHIR");
                 $pdf->addText($x+$kiri, $pdf->y-$posY-$y-112, 8, "    - BAHASA INDONESIA");

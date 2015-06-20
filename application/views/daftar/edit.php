@@ -88,7 +88,7 @@
             {
                 name: 'no_pen',
                 display: 'Nomor Pendaftaran',
-                rules: 'required|min_length[6]|numeric'
+                rules: 'required'
             },
             <?php if ($this->uri->segment(2) != 'baru') { ?>
             {
@@ -812,7 +812,8 @@
                                 </tr>
 
                                 <tr>
-                                    <td class="tddfkiri" valign="top"><label><?php echo $_nilai ?></label> </td>
+				        <td class="tddfkiri" valign="top"><label><?php echo $_nilai ?></label> </td>
+				
                                     <td class="tddfkanan">
                                         <table id="NILAI_UN" width="300" border="1" cellspacing="0" cellpadding="0">
                                             <thead align="center">
