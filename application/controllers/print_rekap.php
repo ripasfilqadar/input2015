@@ -82,7 +82,7 @@ function tes2() {phpinfo();}
             function HeaderFooter(&$dpdf,$nama_sekolah)
             {
                 $dpdf->addJpegFromFile("images/logo-sidoarjo1.jpg",35,760);
-                // $dpdf->addJpegFromFile("images/sido.jpg",32,760,60);
+                // $dpdf->addJpegFromFile("images/sido.jpg",35,760,60);
                 $text = "<b>DAFTAR CALON SISWA YANG MENDAFTAR DI</b>";
                 $school = "<b>".$nama_sekolah."</b>";
                 $tahun = "<b>TAHUN AJARAN 2013/2014</b>";
@@ -137,7 +137,12 @@ function tes2() {phpinfo();}
                 $where['JALUR_DAFTAR <>'] = 1;
             else
                 $where['JALUR_DAFTAR'] = 1;
-            $pendaftar = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2', $where, $where_escaped, 'NAMA ASC')->result_array();
+            
+            // $pendaftar = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2', 'NAKHIR_ASLI', $where, $where_escaped, 'NAMA ASC')->result_array();
+            if ($tingkatan=='smp')
+                $pendaftar = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA, ASAL_SEKOLAH, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2, NAKHIR_ASLI', $where, $where_escaped, 'NAMA ASC')->result_array();
+            else  
+                $pendaftar = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA, ASAL_SEKOLAH, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2,NILAI_AKHIR', $where, $where_escaped, 'NAMA ASC')->result_array();
             
             $i = 0;
             foreach ($pendaftar as $key => $val) {
