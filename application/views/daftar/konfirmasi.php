@@ -98,7 +98,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td class="tddfkiri" valign="top"><label><?php if($tingkatan=='smp')echo "Rata-Rata Nilai US"; else echo $_nilai ?></label> </td>
+                                        <td class="tddfkiri" valign="top"><label><?php if($tingkatan=='smp')echo "Nilai Ujian Sekolah"; else echo $_nilai ?></label> </td>
                                         <td class="tddfkanan">
                                             <table id="NILAI_UN" width="300" border="1" cellspacing="0" cellpadding="0">
                                                 <thead align="center">
@@ -136,7 +136,7 @@
                                     </tr>
                                     <?php if ($tingkatan == 'smp') { ?> 
                                     <tr>
-                                        <td class="tddfkiri" valign="top"><label>Rata-Rata Nilai Rapor</label> </td>
+                                        <td class="tddfkiri" valign="top"><label>Nilai Rata-Rata Rapor</label> </td>
                                         <td class="tddfkanan">
                                             <table id="NILAI_RAP" width="300" border="1" cellspacing="0" cellpadding="0">
                                                 <thead align="center">
@@ -161,7 +161,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="tddfkiri" valign="top"><label>Nilai Akhir</label> </td>
+                                        <td class="tddfkiri" valign="top"><label>Nilai Akhir / Nilai Sekolah</label> </td>
                                         <td class="tddfkanan">
                                             <table id="NILAI_AKHIR" width="300" border="1" cellspacing="0" cellpadding="0">
                                                 <thead align="center">

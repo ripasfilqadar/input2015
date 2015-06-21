@@ -98,8 +98,8 @@ class Pdf extends CI_Controller {
             $judul2 = "DINAS PENDIDIKAN";
             //date_default_timezone_set('Asia/Jakarta');
             $judul3 = "Jl. Pahlawan No. 4, Sidoarjo, Telp. 031-8921219, 031-8940921";
-            $path="images/logo-sidoarjo1.jpg";
-            $pdf->addJpegFromFile($path,30,$pdf->y-$posY-55);
+            $path="images/sido.jpg";
+            $pdf->addJpegFromFile($path,30,$pdf->y-$posY-55,60);
         //$pdf->addJpegFromFile("qrcode/coba.jpg", $x+$val3, $pdf->y-$posY-$y);
             $pdf->addText(150, $pdf->y-$posY-9, 15, $judul1);
             $pdf->addText(215, $pdf->y-$posY-25, 16, $judul2);
@@ -171,7 +171,7 @@ class Pdf extends CI_Controller {
                     $pdf->addText($x+$kiri, $pdf->y-$posY-$y-104, 8, "NILAI ");
                     $pdf->addText($x+$val, $pdf->y-$posY-$y-104, 8, "US");
                     $pdf->addText($x+$val+35, $pdf->y-$posY-$y-104, 8, "RAPOR");
-                    $pdf->addText($x+$val+70, $pdf->y-$posY-$y-104, 8, "NS");
+                    $pdf->addText($x+$val+70, $pdf->y-$posY-$y-104, 8, "NA/NS");
                 }
             	else $pdf->addText($x+$kiri, $pdf->y-$posY-$y-104, 8, "NILAI AKHIR");
                 $pdf->addText($x+$kiri, $pdf->y-$posY-$y-112, 8, "    - BAHASA INDONESIA");

@@ -32,6 +32,23 @@ a:active {
 .style2 {color: #005083;}
 .style3 {color: #B7B7B7}
 
+.blink{
+    -webkit-animation:blink 3s infinite;
+    animation:blink 3pxs infinite;
+}
+
+@-webkit-keyframes blink
+{
+    from {visibility: hidden;}
+    to{visibility: }
+}
+
+@keyframes blink
+{
+    from {visibility: hidden;}
+    to{visibility: }   
+}
+
 /*tambahan*/
 
 

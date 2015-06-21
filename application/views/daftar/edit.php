@@ -252,6 +252,11 @@
                     <tr>
                         <td align="justify">
                             <div style="margin:10px 0 0 15px;">
+                            <?php 
+                            if ($this->session->userdata('TINGKATAN_SEKOLAH') == '1') { ?> 
+                                <p class="blink" style="background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px;">Apabila ada nilai rata-rata rapor yang <b>kosong</b> atau <b>tidak sesuai</b> dengan SKL, mohon diinputkan sesuai dengan nilai yang tertera pada SKL/SKHU</p>
+                            <?php 
+                             } ?>
                                 Periksa dahulu map beserta kelengkapannya baru kemudian data dimasukkan.
                                 <br />Pastikan data yang dimasukkan sudah benar.
                             </div>
@@ -281,7 +286,8 @@
                                             ?>
                                         </td>
                                     </tr>
-                                    <?php if($tingkatan=='smp')echo  "<p style='background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px;'>Petugas Input Data Pendaftaran SMP diwajibkan melakukan pengecekan Nilai Sekolah Bahasa Indonesia, Matematika, dan IPA yang tertera pada SKL/SKHUN dan Rata-Rata Nilai Rapor Bahasa Indonesia, Matematika, dan IPA </p>"; ?>
+                                    <?php 
+                                    // if($tingkatan=='smp')echo  "<p style='background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px;'>Petugas Input Data Pendaftaran SMP diwajibkan melakukan pengecekan Nilai Sekolah Bahasa Indonesia, Matematika, dan IPA yang tertera pada SKL/SKHUN dan Rata-Rata Nilai Rapor Bahasa Indonesia, Matematika, dan IPA </p>"; ?>
                                     <tr>
                                         <td class="tddfkiri">
                                             <label><?php echo $_noun ?></label>
@@ -466,7 +472,12 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="tddfkiri" valign="top"><label><?php echo $_nilai ?></label> </td>
+                                        <?php if ($tingkatan == 'smp') { ?>
+                                            <td class="tddfkiri" valign="top"><label>Nilai Ujian Sekolah</label> </td>
+                                        <?php } 
+                                        else { ?>
+                                            <td class="tddfkiri" valign="top"><label><?php echo $_nilai ?></label> </td>
+                                        <?php } ?>
                                         <td class="tddfkanan">
                                             <table id="NILAI_UN" width="300" border="1" cellspacing="0" cellpadding="0">
                                                 <thead align="center">
@@ -550,7 +561,7 @@
                                     </tr>
                                     <?php if ($tingkatan == 'smp') { ?>  
                                     <tr>
-                                        <td class="tddfkiri" valign="top"><label><?php if($tingkatan=='smp')echo "Rata-Rata Nilai Rapor:<p style='font-size:10px; color:red;'>( Nilai Desimal Dipishakan Dengan Tanda Titik, BUKAN Koma)</p>"; else echo $_nilaiRAP ?></label> </td>
+                                        <td class="tddfkiri" valign="top"><label><?php if($tingkatan=='smp')echo "Nilai Rata-Rata Rapor:<p style='font-size:10px; color:red;'>( Nilai Desimal Dipishakan Dengan Tanda Titik, BUKAN Koma)</p>"; else echo $_nilaiRAP ?></label> </td>
                                         <td class="tddfkanan">
                                             <table id="NILAI_RAP" width="300" border="1" cellspacing="0" cellpadding="0">
                                                 <thead align="center">
@@ -577,16 +588,15 @@
                                                 </tbody>
                                             </table>
                                         </td>
-				 <input id="flag" name="flag" type="hidden" value="0">
-				<?php 
-				if ($this->uri->segment(2) == 'baru'){ ?>
+				                        <input id="flag" name="flag" type="hidden" value="0">
+				                        <?php 
+				                            if ($this->uri->segment(2) == 'baru'){ ?>
                                         <td><input type='button' onclick="editus()"  style="height:40px;" value="Perubahan Nilai"></td>
-                                       <?php } ?>
+                                        <?php } ?>
                                     </tr> 
-				<?php  
-				if ($this->uri->segment(2) == 'baru'){ ?>
-
-			                                    <tr style="visibility:hidden" id="perubahan">
+				                    <?php  
+				                    if ($this->uri->segment(2) == 'baru'){ ?>
+			                        <tr style="visibility:hidden" id="perubahan">
                                         <td id="alasanlabel" class="tddfkiri" valign="top"><label>Alasan Perubahan</label> </td>
                                         <td><input name="alasan" id="alasan" style="height:40px; width:340px" value="<?php if(isset($pendaftar->ALASAN)) echo $pendaftar->ALASAN;  ?>" ></td>
                                         <td><input type="button"  onclick="saveus()" id="tombolubah" style="visibility:hidden;height:40px;" value="Simpan Nilai"></td>
@@ -597,7 +607,7 @@
                                         <td><input type="button" onclick="cancelus()"  id="cancelus1" style="visibility:hidden;height:40px;" value="Batalkan Perubahan"></td>
                                     </tr>
                                     <tr> <?php } ?>
-                                        <td class="tddfkiri" valign="top"><label>Nilai Akhir</label> </td>
+                                        <td class="tddfkiri" valign="top"><label>Nilai Akhir / Nilai Sekolah</label> </td>
                                         <td class="tddfkanan">
                                             <table id="NILAI_US" width="300" border="1" cellspacing="0" cellpadding="0">
                                                 <thead align="center">

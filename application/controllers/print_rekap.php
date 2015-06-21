@@ -80,7 +80,7 @@ function tes2() {phpinfo();}
             $tanggal = $this->input->post('tanggal');
             function HeaderFooter(&$dpdf,$nama_sekolah,$pendaftar)
             {
-                $dpdf->addJpegFromFile("images/logo-sidoarjo1.jpg",35,760);
+                $dpdf->addJpegFromFile("images/sido.jpg",32,760,60);
                 $text = "<b>DAFTAR CALON SISWA YANG MENDAFTAR DI</b>";
                 $school = "<b>".$nama_sekolah."</b>";
                 $tahun = "<b>TAHUN AJARAN 2015/2016</b>";

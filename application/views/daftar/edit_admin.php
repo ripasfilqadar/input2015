@@ -34,6 +34,11 @@
                     <tr>
                         <td align="justify">
                             <div style="margin:10px 0 0 15px;">
+                            <?php if ($tingkatan == 'smp') { ?> 
+                                <p class="blink" style="background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px;">Apabila ada nilai rata-rata rapor yang <b>kosong</b> atau <b>tidak sesuai</b> dengan SKL, mohon diinputkan sesuai dengan nilai yang tertera pada SKL/SKHU</p>
+                            <?php } ?>
+                            </div>
+                            <div>
                                 Periksa dahulu map beserta kelengkapannya baru kemudian data dimasukkan.
                                 <br />Pastikan data yang dimasukkan sudah benar.
                             </div>

@@ -541,7 +541,7 @@ class Daftar extends CI_Controller {
             $data['_kota2'] = 'Kota/Kab:';
             $data['_nilai'] = 'Nilai UN:';
             $data['_nilai2'] = 'Nilai Test:';
-            $data['_nilaiRAP'] = 'Rata-Rata Nilai Rapor:';
+            $data['_nilaiRAP'] = 'Nilai Rata-Rata Rapor:';
             $data['_nilaiakhir'] = 'Nilai Sekolah:';
             $data['_mendaftar'] = 'Mendaftar di:';
             $data['_telp'] = 'No Telepon:';

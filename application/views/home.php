@@ -1,5 +1,7 @@
 <?php $this->load->view('base/header', array('namePage' => "Home"));?>
 
+
+
 <div id="sidebar">
     
 
@@ -21,7 +23,10 @@
                         if(substr($tingkatan,0,3)=='smk') 
                         echo "<div style='background-color:#2ecc71; border:1px solid #66CE5B; display:block; text-align:center;width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px; color:white;'> Form pengisian nilai hasil tes SMK dapat diunduh <a href=".base_url()."format/template.xlsx>". "<span style='font-style:italic; font-weight:bold;font-size:16px;'>disini</span> </a> </div>";?>
 
-                    <?php if(substr($tingkatan,0,3)=='smp')echo  "<p style='background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px;'>Petugas Input Data Pendaftaran SMP diwajibkan melakukan pengecekan Nilai Sekolah Bahasa Indonesia, Matematika, dan IPA yang tertera pada SKL/SKHUN dan Rata-Rata Nilai Rapor Bahasa Indonesia, Matematika, dan IPA </p>"; ?>
+                    <?php 
+                        // if(substr($tingkatan,0,3)=='smp')echo  "<p style='background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px;'>Petugas Input Data Pendaftaran SMP diwajibkan melakukan pengecekan Nilai Sekolah Bahasa Indonesia, Matematika, dan IPA yang tertera pada SKL/SKHUN dan Rata-Rata Nilai Rapor Bahasa Indonesia, Matematika, dan IPA </p>"; 
+                        if(substr($tingkatan,0,3)=='smp')echo  "<p class='blink' style='background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px; '>Apabila ada nilai rata-rata rapor yang <b>kosong</b> atau <b>tidak sesuai</b> dengan SKL, mohon diinputkan sesuai dengan nilai yang tertera pada SKL/SKHU</p>";
+                    ?>
                     <?php 
                     // if(substr($tingkatan,0,3)=='smp') echo "<img src=".base_url()."images/SKHUN.jpg   "; ?>
 
