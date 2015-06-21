@@ -338,3 +338,29 @@ dd.x-form-clear {
     margin: 14px 0 14px 0;
     padding: 12px 10px 12px 10px;
 }
+.blink {
+    -webkit-animation: blink 0.5s ease infinite;
+    -moz-animation: blink 0.5s ease infinite
+    -o-animation: blink 0.5s ease infinite;
+    animation: blink 0.5s ease infinite
+}
+ 
+@-webkit-keyframes blink {
+    from { background-color: yellow }
+    to {background-color: rgb(240, 240, 132)}
+}
+ 
+@-moz-keyframes blink {
+    from { background-color: yellow }
+    to {background-color: red}
+}
+ 
+@-o-keyframes blink {
+    from { background-color: yellow }
+    to {background-color: rgb(240, 240, 132)}
+}
+ 
+@keyframes blink {
+    from { background-color: yellow }
+    to {background-color: rgb(240, 240, 132)}
+}

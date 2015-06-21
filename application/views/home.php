@@ -25,7 +25,7 @@
 
                     <?php 
                         // if(substr($tingkatan,0,3)=='smp')echo  "<p style='background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px;'>Petugas Input Data Pendaftaran SMP diwajibkan melakukan pengecekan Nilai Sekolah Bahasa Indonesia, Matematika, dan IPA yang tertera pada SKL/SKHUN dan Rata-Rata Nilai Rapor Bahasa Indonesia, Matematika, dan IPA </p>"; 
-                        if(substr($tingkatan,0,3)=='smp')echo  "<p class='blink' style='background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px; '>Apabila ada nilai rata-rata rapor yang <b>kosong</b> atau <b>tidak sesuai</b> dengan SKL, mohon diinputkan sesuai dengan nilai yang tertera pada SKL/SKHU</p>";
+                        if(substr($tingkatan,0,3)=='smp')echo  "<div class='blink' style='background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px; ><p  style='background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px; '>Apabila ada nilai rata-rata rapor yang <b>kosong</b> atau <b>tidak sesuai</b> dengan SKL, mohon diinputkan sesuai dengan nilai yang tertera pada SKL/SKHU</p></div>";
                     ?>
                     <?php 
                     // if(substr($tingkatan,0,3)=='smp') echo "<img src=".base_url()."images/SKHUN.jpg   "; ?>
