@@ -140,9 +140,9 @@ function tes2() {phpinfo();}
             
             // $pendaftar = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2', 'NAKHIR_ASLI', $where, $where_escaped, 'NAMA ASC')->result_array();
             if ($tingkatan=='smp')
-                $pendaftar = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA, ASAL_SEKOLAH, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2, NAKHIR_ASLI', $where, $where_escaped, 'NAMA ASC')->result_array();
+                $pendaftar = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2, NAKHIR_ASLI', $where, $where_escaped, 'NAMA ASC')->result_array();
             else  
-                $pendaftar = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA, ASAL_SEKOLAH, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2,NILAI_AKHIR', $where, $where_escaped, 'NAMA ASC')->result_array();
+                $pendaftar = $this->m_pendaftar->read('PID, NO_PENDAFTARAN, NO_UJIAN, NAMA, ASAL_SEKOLAH, JALUR_DAFTAR, USER_FISIK, LOG_DAFTAR, PILIH1, PILIH2,NILAI_AKHIR', $where, $where_escaped, 'NAMA ASC')->result_array();
             
             $i = 0;
             foreach ($pendaftar as $key => $val) {
