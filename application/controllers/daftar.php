@@ -499,6 +499,12 @@ class Daftar extends CI_Controller {
             $this->form_validation->set_rules('nilai_bind', 'Nilai Bahasa Indonesia', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
             $this->form_validation->set_rules('nilai_mat', 'Nilai Bahasa Matematika', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
             $this->form_validation->set_rules('nilai_ipa', 'Nilai Bahasa IPA', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
+
+            if ($data['tingkatan'] == 'smp'){
+                $this->form_validation->set_rules('nilai_bind2', 'Nilai Bahasa Indonesia', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
+                $this->form_validation->set_rules('nilai_mat2', 'Nilai Bahasa Matematika', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
+                $this->form_validation->set_rules('nilai_ipa2', 'Nilai Bahasa IPA', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
+            }
             //$this->form_validation->set_rules('nun_asli', ($this->uri->segment(2) == 'lalu') ? 'NUN' : 'Nilai Akhir', 'required|decimal');
              // $this->form_validation->set_rules('no_pen', 'Nomor Pendaftaran', 'required');
         }
@@ -674,16 +680,14 @@ class Daftar extends CI_Controller {
  	      $NO_PENDAFTARAN=$this->input->post('no_pen');
             $NO_PENDAFTARAN_FLAG=$this->m_pendaftar->cekdaftar($NO_PENDAFTARAN, $data['tingkatan']);
             $data = array('pendaftar' => $pendaftar);
+            print_r($NO_PENDAFTARAN_FLAG);
             $this->session->set_userdata($data);
-            if ($NO_PENDAFTARAN_FLAG>0){
-                $this->session->set_flashdata('error','No Pendaftaran sudah dipakai');
+            if (sizeof($NO_PENDAFTARAN_FLAG)>0){
+                $this->session->set_flashdata('error','Nomor Pendaftaran tersebut <b>telah digunakan</b> oleh pendaftar lain dengan No.Ujian <b>'.$NO_PENDAFTARAN_FLAG[0]['NO_UJIAN'].'</b>. Data lebih rinci silahkan lihat di Tab <b>Cari Data Terdaftar</b>');
                 
                 redirect('daftar/'.$this->uri->segment(2).'/2');   
             }
-                
-               
-               
-
+                          
                 redirect('daftar/'.$this->uri->segment(2).'/3');
             }
             

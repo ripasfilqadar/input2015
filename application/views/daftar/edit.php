@@ -739,7 +739,7 @@
                                     <tr>
                                         <td class="tddfkiri">&nbsp;</td>
                                         <td class="tddfkanan">
-                                            <input id="simpan" type="submit" name="act" value="Simpan" style="border: solid thin #123412"/>
+                                            <input id="simpan" onclick="cek()" type="button" name="act" value="Simpan" style="border: solid thin #123412"/>
                                             <input id="kembali1" type="button" name="act" value="Kembali" style="border: solid thin #123412;" onclick="cancelForm();" />
                                         </td>
                                     </tr>
@@ -980,7 +980,18 @@ $("#pilih2").change(function(){ //change pilih2
     // bind = document.getElementById('nilai_bind2').value;
     // ipa = document.getElementById('nilai_ipa2').value;
     // mat = document.getElementById('nilai_mat2').value;
+    function cek () 
+    {
+        bind = document.getElementById('nilai_bind2').value;
+        ipa = document.getElementById('nilai_ipa2').value;
+        mat = document.getElementById('nilai_mat2').value;
 
+        if (bind=='' || mat=='' || ipa=='' || bind==0 || mat==0 || ipa==0)
+        {
+            window.alert("Mohon isi nilai rata-rata rapor!");
+        }
+        else document.getElementById('simpan').type='submit';
+    }
     function editus()
     {
         // bind = document.getElementById('nilai_bind2').value;

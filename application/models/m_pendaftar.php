@@ -107,6 +107,6 @@ class m_pendaftar extends MY_Model {
     {
         $query="select * from pendaftar_$tingkatan where NO_PENDAFTARAN='$no'";
         $query=$this->db->query($query);
-        return $query->num_rows();
+        return $query->result_array();
     }
 }
