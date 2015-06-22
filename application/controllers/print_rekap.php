@@ -85,7 +85,7 @@ function tes2() {phpinfo();}
                 // $dpdf->addJpegFromFile("images/sido.jpg",35,760,60);
                 $text = "<b>DAFTAR CALON SISWA YANG MENDAFTAR DI</b>";
                 $school = "<b>".$nama_sekolah."</b>";
-                $tahun = "<b>TAHUN AJARAN 2013/2014</b>";
+                $tahun = "<b>TAHUN AJARAN 2014/2015</b>";
                 $all = $dpdf->openObject();
                 $dpdf->saveState();
                 $dpdf->setStrokeColor(0,0,0,1);

@@ -29,6 +29,7 @@
                     ?>
                     <?php 
                     // if(substr($tingkatan,0,3)=='smp') echo "<img src=".base_url()."images/SKHUN.jpg   "; ?>
+		<p  style='background-color:yellow; border:1px solid #66CE5B; display:block; text-align:center; width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px; '>Tidak ada pencabutan berkas saat data telah dimasukkan ke database</p>
 
                     <tr>
                         <td align="justify"><div style="margin-left:12 ; padding:10px ; margin-right:12;">Aplikasi PPDB Sidoarjo <?php echo date("Y"); ?> Online ini digunakan untuk memproses data penerimaan siswa baru yang berasal dari Kab. Sidoarjo yang akan melanjutkan sekolah pada jenjang SMPN, SMAN dan SMKN di Kab. Sidoarjo.<br>
