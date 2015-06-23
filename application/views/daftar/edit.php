@@ -1080,9 +1080,9 @@ $("#pilih2").change(function(){ //change pilih2
         document.getElementById('nrap_asli').value=(Math.round(parseFloat(akhirs)*100)/100).toFixed(2);      
         akhir2 = document.getElementById('nrap_asli').value
 
-        document.getElementById('nilai_bind3').value=(Math.round((parseFloat(bind2)*0.7 + parseFloat(bind)*0.3)*100)/100).toFixed(2);
-        document.getElementById('nilai_mat3').value=(Math.round((parseFloat(mat2)*0.7 + parseFloat(mat)*0.3)*100)/100).toFixed(2);
-        document.getElementById('nilai_ipa3').value=(Math.round((parseFloat(ipa2)*0.7 + parseFloat(ipa)*0.3)*100)/100).toFixed(2);
+        document.getElementById('nilai_bind3').value=(Math.floor((parseFloat(bind2)*0.7 + parseFloat(bind)*0.3)*100)/100).toFixed(2);
+        document.getElementById('nilai_mat3').value=(Math.floor((parseFloat(mat2)*0.7 + parseFloat(mat)*0.3)*100)/100).toFixed(2);
+        document.getElementById('nilai_ipa3').value=(Math.floor((parseFloat(ipa2)*0.7 + parseFloat(ipa)*0.3)*100)/100).toFixed(2);
         document.getElementById('nakhir_asli').value=(Math.round((parseFloat(akhir2)*0.7 + parseFloat(akhir)*0.3)*100)/100).toFixed(2);
     }
 </script>
