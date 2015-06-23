@@ -146,8 +146,8 @@ class Daftar extends CI_Controller {
                 if ($tingkatan != 'smp')
                     $this->form_validation->set_rules('nilai_bing', 'Nilai Bahasa Inggris', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
                 $this->form_validation->set_rules('nilai_bind', 'Nilai Bahasa Indonesia', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
-                $this->form_validation->set_rules('nilai_mat', 'Nilai Bahasa Matematika', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
-                $this->form_validation->set_rules('nilai_ipa', 'Nilai Bahasa IPA', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
+                $this->form_validation->set_rules('nilai_mat', 'Nilai Matematika', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
+                $this->form_validation->set_rules('nilai_ipa', 'Nilai IPA', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
                 $this->form_validation->set_rules('pilih1', 'Pilihan 1', 'required');
                 if (!$this->form_validation->run()) {
                     $this->m_pendaftar->set_tingkatan($tingkatan);
@@ -497,13 +497,13 @@ class Daftar extends CI_Controller {
                 $this->form_validation->set_rules('nilai_bing', 'Nilai Bahasa Inggris', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
 
             $this->form_validation->set_rules('nilai_bind', 'Nilai Bahasa Indonesia', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
-            $this->form_validation->set_rules('nilai_mat', 'Nilai Bahasa Matematika', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
-            $this->form_validation->set_rules('nilai_ipa', 'Nilai Bahasa IPA', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
+            $this->form_validation->set_rules('nilai_mat', 'Nilai Matematika', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
+            $this->form_validation->set_rules('nilai_ipa', 'Nilai IPA', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
 
             if ($data['tingkatan'] == 'smp'){
                 $this->form_validation->set_rules('nilai_bind2', 'Nilai Bahasa Indonesia', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
-                $this->form_validation->set_rules('nilai_mat2', 'Nilai Bahasa Matematika', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
-                $this->form_validation->set_rules('nilai_ipa2', 'Nilai Bahasa IPA', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
+                $this->form_validation->set_rules('nilai_mat2', 'Nilai Matematika', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
+                $this->form_validation->set_rules('nilai_ipa2', 'Nilai IPA', 'required|decimal|callback__greater_than_equals[0]|callback__less_than_equals[10]');
             }
             //$this->form_validation->set_rules('nun_asli', ($this->uri->segment(2) == 'lalu') ? 'NUN' : 'Nilai Akhir', 'required|decimal');
              // $this->form_validation->set_rules('no_pen', 'Nomor Pendaftaran', 'required');
