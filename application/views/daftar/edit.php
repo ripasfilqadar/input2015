@@ -739,10 +739,12 @@
                                     <tr>
                                         <td class="tddfkiri">&nbsp;</td>
                                         <td class="tddfkanan">
-                                        <?php if ($tingkatan == 'smp') ?>
+                                        <?php if ($tingkatan == 'smp') {?>
                                             <input id="simpan" onclick="cek()" type="button" name="act" value="Simpan" style="border: solid thin #123412"/>
-                                        <?php else ?>
+                                        <?php {?>
+                                        <?php else {?>
                                             <input id="simpan" type="submit" name="act" value="Simpan" style="border: solid thin #123412"/>
+                                            <?php {?>
                                            
                                             <input id="kembali1" type="button" name="act" value="Kembali" style="border: solid thin #123412;" onclick="cancelForm();" />
                                         </td>
