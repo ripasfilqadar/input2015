@@ -574,15 +574,15 @@
                                                     <tr>
                                                         <td>
                                                             <input id="nilai_bind22" onchange="sum()" name="nilai_bind22" size="7" type="hidden" style="margin-top: 5px;" value="<?php echo $pendaftar->RAP_BIND; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
-                                                            <input id="nilai_bind2" onchange="sum()" name="nilai_bind2" size="7" type="number" style="margin-top: 5px;width:78px" value="<?php echo $pendaftar->RAP_BIND; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
+                                                            <input id="nilai_bind2" onchange="sum()" name="nilai_bind2" size="7" type="text" style="margin-top: 5px;width:78px" value="<?php echo $pendaftar->RAP_BIND; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
                                                         </td>
                                                         <td width="50px">
                                                             <input id="nilai_mat22" onchange="sum()" name="nilai_mat22" size="7" type="hidden" style="margin-top: 5px;" value="<?php echo $pendaftar->RAP_MAT; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
-                                                            <input id="nilai_mat2" onchange="sum()" name="nilai_mat2" size="7" type="number" style="margin-top: 5px;width:78px" value="<?php echo $pendaftar->RAP_MAT; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
+                                                            <input id="nilai_mat2" onchange="sum()" name="nilai_mat2" size="7" type="text" style="margin-top: 5px;width:78px" value="<?php echo $pendaftar->RAP_MAT; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
                                                         </td>
                                                         <td>
                                                             <input id="nilai_ipa22" onchange="sum()" name="nilai_ipa22" size="7" type="hidden" style="margin-top: 5px;" value="<?php echo $pendaftar->RAP_IPA; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> />
-                                                            <input id="nilai_ipa2" onchange="sum()" name="nilai_ipa2" size="7" type="number" style="margin-top: 5px;width:78px" value="<?php echo $pendaftar->RAP_IPA; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> /></td>
+                                                            <input id="nilai_ipa2" onchange="sum()" name="nilai_ipa2" size="7" type="text" style="margin-top: 5px;width:78px" value="<?php echo $pendaftar->RAP_IPA; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="disabled"' : ''; ?> /></td>
                                                         <?php if ($this->uri->segment(2) == 'baru') { ?><td><input id="nrap_asli" name="nrap_asli" size="7" type="text" style="margin-top: 5px;" value="<?php echo $pendaftar->NRAP_ASLI; ?>"<?php echo ($this->uri->segment(2) == 'baru') ? ' disabled="enabled"' : ''; ?> /></td><?php } ?> 
                                                     </tr>
                                                 </tbody>
