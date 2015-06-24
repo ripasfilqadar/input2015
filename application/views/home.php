@@ -20,8 +20,8 @@
                     // echo "<div style='background-color:#2ecc71; border:1px solid #66CE5B; display:block; text-align:center;width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px; color:white;'> Data Siswa diterima dapat didownload  <a  href=".base_url()."dataditerima/".str_replace(" ","%20",$this->session->userdata('NAMA_SEKOLAH')).".csv>"."<span style='font-style:italic; font-weight:bold;font-size:16px;'>disini</span> </a> </div>"; ?>
 
                     <?php
-                        // if(substr($tingkatan,0,3)=='smk') 
-                        // echo "<div class='blink' style='background-color:#2ecc71; border:1px solid #66CE5B; display:block; text-align:center;width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px; color:white;'> Form pengisian NTMB dan NTK untuk SMK dapat diunduh <a href=".base_url()."format/".str_replace(" ","%20",$this->session->userdata('NAMA_SEKOLAH')).".xlsx>". "<span style='font-style:italic; font-weight:bold;font-size:16px;'>disini</span> </a> </div>";
+                        if(substr($tingkatan,0,3)=='smk') 
+                        echo "<div class='blink' style='background-color:#2ecc71; border:1px solid #66CE5B; display:block; text-align:center;width:92%; margin:14px 0 14px 0; padding:12px 10px 12px 10px; color:white;'> Form pengisian NTMB dan NTK untuk SMK dapat diunduh <a href=".base_url()."format/".str_replace(" ","%20",$this->session->userdata('NAMA_SEKOLAH')).".xlsx>". "<span style='font-style:italic; font-weight:bold;font-size:16px;'>disini</span> </a> </div>";
                     ?>
 
                     <?php 
