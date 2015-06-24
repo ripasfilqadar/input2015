@@ -339,12 +339,12 @@ dd.x-form-clear {
     padding: 12px 10px 12px 10px;
 }
 
-.blink {
+/*.blink {
     -webkit-animation: blink 0.5s ease infinite;
     -moz-animation: blink 0.5s ease infinite
     -o-animation: blink 0.5s ease infinite;
     animation: blink 0.5s ease infinite
-}
+}*/
  
 /*@-webkit-keyframes blink {
     from { background-color: yellow }
